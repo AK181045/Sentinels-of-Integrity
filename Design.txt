@@ -5,8 +5,7 @@
 /ml_models      # Training & Inference (PyTorch) - Managed by Agent Beta
 /extension      # Browser UI (React/Vite) - Managed by Agent Gamma
 /contracts      # Solidity/Smart Contracts - Managed by Agent Alpha
-/shared         # Shared Protobuf/Schema definitions
-
+/shared         # Shared Protobuf/Schema 
 ## 2. DATA FLOW
 1. EXTENSION -> Sends media URL/Blob to API.
 2. API -> Triggers ML_INFERENCE and BLOCKCHAIN_LOOKUP.
