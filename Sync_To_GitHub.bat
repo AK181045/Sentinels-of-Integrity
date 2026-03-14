@@ -5,8 +5,10 @@ echo ===================================================
 echo.
 cd /d "c:\Users\SAI\Desktop\Sentinals of integrity"
 
+set GIT_CMD="C:\Program Files\Git\cmd\git.exe"
+
 echo Checking for changes to back up...
-git status --porcelain > nul
+%GIT_CMD% status --porcelain > nul
 if errorlevel 1 (
     echo Git repository not found!
     pause
@@ -14,16 +16,16 @@ if errorlevel 1 (
 )
 
 echo Adding all modified files...
-git add .
+%GIT_CMD% add .
 echo.
 
 echo Committing changes...
 set datetime=%date% %time%
-git commit -m "Auto-backup on %datetime%"
+%GIT_CMD% commit -m "Auto-backup on %datetime%"
 echo.
 
 echo Uploading to GitHub...
-git push origin main
+%GIT_CMD% push origin main
 echo.
 echo ===================================================
 echo    SUCCESS! All changes are now safely on GitHub!

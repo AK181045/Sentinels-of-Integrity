@@ -5,6 +5,7 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 PROJECT_DIR = r"c:\Users\SAI\Desktop\Sentinals of integrity"
+GIT_CMD = r"C:\Program Files\Git\cmd\git.exe"
 
 class AutoSyncHandler(FileSystemEventHandler):
     def __init__(self):
@@ -16,19 +17,19 @@ class AutoSyncHandler(FileSystemEventHandler):
         print(f"\n[🔄] Change detected! Auto-syncing to GitHub...")
         try:
             # Add all new changes
-            subprocess.run(['git', 'add', '.'], cwd=PROJECT_DIR, check=True, capture_output=True)
+            subprocess.run([GIT_CMD, 'add', '.'], cwd=PROJECT_DIR, check=True, capture_output=True)
             
             # Use porcelain to check if there are actual commit-able files
-            status = subprocess.run(['git', 'status', '--porcelain'], cwd=PROJECT_DIR, capture_output=True, text=True)
+            status = subprocess.run([GIT_CMD, 'status', '--porcelain'], cwd=PROJECT_DIR, capture_output=True, text=True)
             if not status.stdout.strip():
                 return # No files actually modified
                 
             # Commit and push
             commit_msg = f"Auto-sync update - {time.strftime('%Y-%m-%d %H:%M:%S')}"
-            subprocess.run(['git', 'commit', '-m', commit_msg], cwd=PROJECT_DIR, check=True)
+            subprocess.run([GIT_CMD, 'commit', '-m', commit_msg], cwd=PROJECT_DIR, check=True)
             
             # Using push without tracking to avoid some silent failures
-            push = subprocess.run(['git', 'push', 'origin', 'main'], cwd=PROJECT_DIR, capture_output=True, text=True)
+            push = subprocess.run([GIT_CMD, 'push', 'origin', 'main'], cwd=PROJECT_DIR, capture_output=True, text=True)
             
             if push.returncode == 0:
                 print(f"[✅] Successfully automatically synced to GitHub!")
