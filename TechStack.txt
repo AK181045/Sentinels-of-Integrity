@@ -1,0 +1,46 @@
+# ==============================================================================
+# PROJECT: SENTINELS OF INTEGRITY (SECURE EDITION)
+# FOCUS: CYBERSECURITY, AI SAFETY, & CRYPTOGRAPHIC PROVENANCE
+# ==============================================================================
+
+[1] THE SECURE AI PIPELINE (@ML-Engineer + @Security-Analyst)
+------------------------------------------------------------------------------
+- Framework: PyTorch 2.5+ (Compiled with 'Torch-Protect' for model integrity)
+- Adversarial Defense: 
+    - Robustness Library (ART): To defend against "Adversarial Patches" that trick AI.
+    - Differential Privacy: Opacus (Ensures training data remains anonymous).
+- Model Watermarking: Neural Network Watermarking to prevent "Model Stealing."
+- Verification: Formal Verification of the model's decision-making boundaries.
+
+[2] ZERO-TRUST BACKEND & API (@Dev-Backend + @SecOps)
+------------------------------------------------------------------------------
+- Language: Rust 1.80+ (Memory-safe core for critical hashing/signing logic)
+- Authentication: 
+    - mTLS (Mutual TLS): For secure communication between Microservices.
+    - WebAuthn / FIDO2: Passwordless, phishing-resistant admin access.
+- API Security: 
+    - JWT with RS256: Asymmetric signing to prevent token forgery.
+    - Rate Limiting: Redis-based sliding window to prevent DDoS on GPU nodes.
+- Secrets Management: HashiCorp Vault (Hardware Security Module/HSM integration).
+
+[3] CRYPTOGRAPHIC PROVENANCE (@Dev-Web3)
+------------------------------------------------------------------------------
+- Standards: C2PA (Signed with X.509 Certificates).
+- Blockchain Security: 
+    - ZK-Proofs (SnarkyJS/Circom): Prove a video is real without leaking metadata.
+    - Multi-Sig Wallets: Requiring 3-of-5 "Validator" approvals to update the Ledger.
+- Ledger: Polygon zkEVM (Inherits Ethereum's Layer-1 security).
+- Data Integrity: Merkle Tree structures to ensure media chunks aren't swapped.
+
+[4] BROWSER EXTENSION HARDENING (@Frontend-Lead)
+------------------------------------------------------------------------------
+- Sandbox: Chrome Manifest V3 (Strict Content Security Policy / CSP).
+- Integrity: Subresource Integrity (SRI) for all fetched scripts.
+- Anti-Tamper: Obfuscation of the extension logic to prevent reverse-engineering.
+- Privacy: Local-first hashing (No raw video is ever uploaded, only the hash).
+
+[5] INFRASTRUCTURE & MONITORING (@Architect)
+------------------------------------------------------------------------------
+- DevSecOps: Snyk/Trivy (Scanning for vulnerabilities in Docker images/dependencies).
+- Intrusion Detection: Falco (Runtime security for Kubernetes clusters).
+- Log Security: Immutable Logging (Logs are pushed to a WORM—Write Once Read Many—drive).

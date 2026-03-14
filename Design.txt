@@ -1,0 +1,37 @@
+# SENTINELS OF INTEGRITY - SYSTEM DESIGN SPEC v1.0
+
+## 1. DIRECTORY STRUCTURE
+/api            # Backend (FastAPI, Python) - Managed by Agent Alpha
+/ml_models      # Training & Inference (PyTorch) - Managed by Agent Beta
+/extension      # Browser UI (React/Vite) - Managed by Agent Gamma
+/contracts      # Solidity/Smart Contracts - Managed by Agent Alpha
+/shared         # Shared Protobuf/Schema definitions
+
+## 2. DATA FLOW
+1. EXTENSION -> Sends media URL/Blob to API.
+2. API -> Triggers ML_INFERENCE and BLOCKCHAIN_LOOKUP.
+3. ML_INFERENCE -> Returns {is_synthetic: bool, confidence: float, artifacts: []}.
+4. BLOCKCHAIN_LOOKUP -> Returns {is_registered: bool, author: str, edit_history: []}.
+5. API -> Aggregates results into "Sentinels Score".
+6. API -> EXTENSION -> Renders UI Overlay.
+
+## 3. ML SPECIFICATIONS
+- Backbone: Xception-based CNN.
+- Temporal: Bi-directional GRU.
+- Target Accuracy: >96% on Celeb-DF v2.
+- Input size: 299x299px frames, 30fps sampling.
+
+## 4. BLOCKCHAIN SPECIFICATIONS
+- Network: Polygon (Layer 2).
+- Data: SHA-256 Hash of media + Metadata Manifest.
+- Standard: C2PA / EIP-712 for typed data signing.
+
+## 5. INTERFACE REQUIREMENTS
+- API Latency: <500ms for hash lookup; <3s for full ML scan.
+- Extension: Must support YouTube, Twitter (X), and TikTok DOM structures.
+
+## 6. SECURITY DIRECTIVES FOR AGENTS
+1. DATA MINIMIZATION: Never store raw video files. Store only HASHES (SHA-256).
+2. MEMORY SAFETY: Critical hashing modules must be written in Rust, not Python.
+3. ENCRYPTION: All data at rest must use AES-256-GCM.
+4. VALIDATION: All inputs from the Browser Extension must be treated as "Untrusted" and sanitized.

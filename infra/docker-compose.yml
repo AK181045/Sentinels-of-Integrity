@@ -1,0 +1,37 @@
+version: '3.9'
+services:
+  api:
+    build: ../api
+    ports: ["8000:8000"]
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://sentinels:password@db:5432/sentinels_db
+      - REDIS_URL=redis://redis:6379/0
+      - ML_ENGINE_URL=http://ml:8001
+    depends_on: [db, redis]
+
+  ml:
+    build:
+      context: ../ml_models
+      dockerfile: ../api/Dockerfile
+    ports: ["8001:8001"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: sentinels_db
+      POSTGRES_USER: sentinels
+      POSTGRES_PASSWORD: password
+    ports: ["5432:5432"]
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+
+volumes:
+  pgdata:

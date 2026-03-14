@@ -1,0 +1,20 @@
+# WORM (Write Once Read Many) Logging Configuration
+# (TechStack.txt §5: "Immutable Logging pushed to WORM drive")
+storage:
+  type: worm
+  retention_days: 365
+  compression: gzip
+
+log_sources:
+  - name: api_access
+    path: /var/log/sentinels/api_access.log
+  - name: api_error
+    path: /var/log/sentinels/api_error.log
+  - name: security_events
+    path: /var/log/sentinels/security.log
+  - name: ml_inference
+    path: /var/log/sentinels/ml_inference.log
+
+integrity:
+  hash_algorithm: SHA-256
+  chain_verification: true

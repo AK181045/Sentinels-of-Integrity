@@ -1,0 +1,13 @@
+# =============================================================================
+# SENTINELS OF INTEGRITY — ML Engine Dependencies
+# =============================================================================
+torch>=2.5.0
+torchvision>=0.20.0
+opencv-python>=4.10.0
+numpy>=1.26.0
+scikit-learn>=1.5.0
+Pillow>=10.4.0
+opacus>=1.5.0
+adversarial-robustness-toolbox>=1.17.0
+matplotlib>=3.9.0
+tqdm>=4.66.0

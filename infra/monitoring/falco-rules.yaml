@@ -1,0 +1,20 @@
+# Falco Intrusion Detection Rules for Sentinels of Integrity
+# (TechStack.txt §5: "Falco Runtime security for Kubernetes clusters")
+
+- rule: Unauthorized Process in API Container
+  desc: Detect unexpected processes running in the API container
+  condition: spawned_process and container.name = "sentinels-api" and not proc.name in (python, uvicorn, sh)
+  output: "Unauthorized process in API container (proc=%proc.name container=%container.name)"
+  priority: WARNING
+
+- rule: Sensitive File Access
+  desc: Detect access to private keys or secrets
+  condition: open_read and fd.name startswith /app/keys/ and container.name startswith "sentinels"
+  output: "Sensitive file accessed (file=%fd.name proc=%proc.name)"
+  priority: CRITICAL
+
+- rule: Outbound Connection to Unknown Host
+  desc: Detect outbound connections to non-whitelisted endpoints
+  condition: outbound and container.name startswith "sentinels" and not fd.sip in (allowed_ips)
+  output: "Outbound connection to unknown host (ip=%fd.sip container=%container.name)"
+  priority: WARNING

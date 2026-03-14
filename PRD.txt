@@ -1,0 +1,79 @@
+
+
+## ## Project: Sentinels of Integrity (AI-Powered Truth Guard)
+
+### ### 1. Executive Summary
+
+**Goal:** Create a real-time defense layer against synthetic media.
+**Solution:** A three-pillar system consisting of a detection engine (ML), a verification layer (Blockchain Watermarking), and a user-facing accessibility layer (Browser Extension).
+
+---
+
+### ### 2. Core Functional Requirements
+
+| Component | Responsibility | Key Features |
+| --- | --- | --- |
+| **ML Detection Engine** | Analysis & Scoring | Spatial/Frequency analysis to detect "ghosting" or facial inconsistencies in deepfakes. |
+| **Blockchain API** | Provenance Tracking | Minting "Integrity Hashes" for original content creators; verification via a decentralized ledger. |
+| **Browser Extension** | User Interface | "Real-time Truth HUD" that overlays a trust score on videos (YouTube, X, TikTok). |
+
+---
+
+### ### 3. Technical Specifications
+
+#### **A. Backend & ML (The "Brain")**
+
+* **Model Architecture:** Convolutional Neural Networks (CNN) and Vision Transformers (ViT) for frame-by-frame analysis.
+* **Verification:** Integration with C2PA (Coalition for Content Provenance and Authenticity) standards.
+* **API:** RESTful endpoints for media submission and JSON-based "Trust Reports."
+
+#### **B. Blockchain Integration (The "Vault")**
+
+* **Metadata Storage:** Instead of storing large video files, store the hash of the original media on-chain.
+* **Digital Watermarking:** Implementation of steganographic watermarking that survives compression and re-encoding.
+
+---
+
+### ### 4. Antigravity Manager View: Agent Orchestration
+
+To build this simultaneously, the **Manager View** will coordinate the following three specialized agents:
+
+1. **Agent Alpha (The Architect - Backend/Web3):**
+* *Task:* Develop the API gateway and the smart contracts for content registration.
+* *Focus:* Security, latency, and blockchain connectivity.
+
+
+2. **Agent Beta (The Researcher - ML/Data Science):**
+* *Task:* Train and optimize the detection model using the `FaceForensics++` or `DeepFake Detection Challenge (DFDC)` datasets.
+* *Focus:* Minimizing False Positives (not labeling real videos as fake).
+
+
+3. **Agent Gamma (The Designer - Frontend/Extension):**
+* *Task:* Build the Chrome/Firefox extension using React.
+* *Focus:* UX/UI, ensuring the overlay is non-intrusive but highly visible.
+
+
+
+---
+
+### ### 5. Success Metrics (KPIs)
+
+* **Detection Accuracy:** $\geq 96\%$ on known deepfake datasets.
+* **Latency:** Analysis results delivered in $< 2$ seconds for short-form clips.
+* **User Retention:** Number of active extension installs verifying $\geq 5$ videos daily.
+
+---
+
+### ### 6. Risks & Mitigations
+
+* **The Arms Race:** As detectors get better, so do deepfakes.
+* *Mitigation:* Continuous learning loops where the ML agent retrains on newly discovered "in-the-wild" fakes.
+
+
+* **Privacy Concerns:** Users might worry about media being tracked.
+* *Mitigation:* Use "Zero-Knowledge" proofs to verify origin without exposing creator identity unless authorized.
+
+
+
+
+

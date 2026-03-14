@@ -1,0 +1,82 @@
+# =============================================================================
+# SENTINELS OF INTEGRITY — .gitignore
+# =============================================================================
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+.env
+*.pth
+*.onnx
+*.pt
+*.bin
+wandb/
+
+# ---------- Rust ----------
+target/
+**/*.rs.bk
+Cargo.lock
+
+# ---------- Node.js ----------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp.*
+.yarn/
+
+# ---------- Solidity / Hardhat ----------
+artifacts/
+cache/
+typechain-types/
+
+# ---------- Browser Extension ----------
+extension/dist/
+extension/build/
+
+# ---------- IDE ----------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ---------- OS ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- Environment ----------
+.env
+.env.local
+.env.*.local
+*.env
+
+# ---------- Docker ----------
+docker-compose.override.yml
+
+# ---------- ML / Data ----------
+data/
+datasets/
+checkpoints/
+logs/
+*.h5
+*.hdf5
+*.tfrecord
+
+# ---------- Secrets ----------
+*.pem
+*.key
+*.crt
+*.p12
+secrets/

@@ -1,0 +1,5 @@
+.sentinel-overlay { position: absolute; top: 10px; right: 10px; z-index: 9999; pointer-events: auto; }
+.sentinel-badge { display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(13, 17, 23, 0.85); backdrop-filter: blur(8px); border: 2px solid #8b949e; border-radius: 20px; color: #e6edf3; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+.sentinel-badge:hover { transform: scale(1.1); box-shadow: 0 4px 16px rgba(0,0,0,0.6); }
+.sentinel-icon { font-size: 16px; }
+.sentinel-score { min-width: 24px; text-align: center; }

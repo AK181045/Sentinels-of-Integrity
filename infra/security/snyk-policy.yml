@@ -1,0 +1,4 @@
+# Snyk Dependency Vulnerability Policy
+version: v1.0
+ignore: {}
+patch: {}

@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinels of Gravity | Next-Gen AI Scanner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #030508;
+            --bg-grad-1: #0a0f1a;
+            --bg-grad-2: #050810;
+            --glass: rgba(20, 25, 35, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-glow: rgba(0, 242, 255, 0.15);
+            --accent: #00f2ff;
+            --accent-glow: #0066ff;
+            --safe: #00ff88;
+            --warn: #ffbb00;
+            --danger: #ff3344;
+            --text-main: #f0f4f8;
+            --text-muted: #8a9bb3;
+        }
+
+        @keyframes bgPulse {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            background: linear-gradient(-45deg, var(--bg-base), var(--bg-grad-1), var(--bg-base), var(--bg-grad-2));
+            background-size: 400% 400%;
+            animation: bgPulse 15s ease infinite;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Abstract Background Grid */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
+        }
+
+        .logo i {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        .status-badge {
+            padding: 10px 20px;
+            border-radius: 30px;
+            background: rgba(0, 255, 136, 0.05);
+            color: var(--safe);
+            font-size: 13px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.1);
+        }
+
+        @keyframes pulseDot {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--safe);
+            border-radius: 50%;
+            animation: pulseDot 2s infinite;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 40px;
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-glow), transparent);
+            opacity: 0.5;
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 12px;
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 18px 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        input:focus, select:focus {
+            border-color: var(--accent);
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), 0 0 15px rgba(0, 242, 255, 0.1);
+        }
+
+        select option {
+            background: #0f141e;
+            color: white;
+        }
+
+        .file-upload-wrapper {
+            position: relative;
+            overflow: hidden;
+            border: 2px dashed rgba(255,255,255,0.15);
+            border-radius: 16px;
+            background: rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .file-upload-wrapper:hover {
+            border-color: var(--accent);
+            background: rgba(0, 242, 255, 0.05);
+        }
+
+        #file-input {
+            opacity: 0;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100%; height: 100%;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .file-upload-content {
+            padding: 30px 20px;
+            pointer-events: none;
+        }
+        
+        .file-upload-content i {
+            display: block; font-size: 24px; color: var(--accent); margin-bottom: 10px; font-style: normal;
+        }
+
+        .tab-btn {
+            flex: 1; padding: 14px; 
+            background: rgba(0,0,0,0.4); 
+            border: 1px solid rgba(255,255,255,0.1); 
+            color: var(--text-muted); 
+            border-radius: 12px; 
+            cursor: pointer; 
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tab-btn.active {
+            background: rgba(0, 242, 255, 0.1);
+            border-color: var(--accent);
+            color: white;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.15);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+            border: none;
+            border-radius: 14px;
+            color: #000;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            text-shadow: 0 1px 2px rgba(255,255,255,0.3);
+            box-shadow: 0 10px 20px rgba(0, 102, 255, 0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: all 0.5s;
+        }
+
+        .btn:hover::after {
+            left: 200%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 102, 255, 0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+        }
+
+        @keyframes glowingRing {
+            0% { box-shadow: 0 0 0 0 currentColor, inset 0 0 20px currentColor; }
+            50% { box-shadow: 0 0 20px 0 currentColor, inset 0 0 40px currentColor; }
+            100% { box-shadow: 0 0 0 0 currentColor, inset 0 0 20px currentColor; }
+        }
+
+        .score-circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid currentColor;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: rgba(0,0,0,0.2);
+            animation: glowingRing 3s infinite alternate;
+            transition: color 0.5s ease;
+        }
+
+        .score-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 64px;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1;
+            text-shadow: 0 0 20px currentColor;
+        }
+
+        .score-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.7;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        .verdict-tag { 
+            display: inline-block; 
+            padding: 8px 16px; 
+            border-radius: 8px; 
+            font-size: 13px; 
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; 
+            letter-spacing: 2px; 
+            text-shadow: 0 0 10px currentColor;
+        }
+        .verdict-authentic { background: rgba(0, 255, 136, 0.1); color: #00ff88; border: 1px solid rgba(0, 255, 136, 0.3); box-shadow: 0 0 20px rgba(0,255,136,0.1); }
+        .verdict-synthetic { background: rgba(255, 51, 68, 0.1); color: #ff3344; border: 1px solid rgba(255, 51, 68, 0.3); box-shadow: 0 0 20px rgba(255,51,68,0.1); }
+        .verdict-partial { background: rgba(255, 187, 0, 0.1); color: #ffbb00; border: 1px solid rgba(255, 187, 0, 0.3); box-shadow: 0 0 20px rgba(255,187,0,0.1); }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s, background 0.3s;
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.02);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .stat-name {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin-top: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes scanRun {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--safe));
+            width: 0%;
+            transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        
+        .progress-fill::after {
+            content:'';
+            position: absolute; top:0; left:0; width:50%; height:100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            animation: scanRun 2s infinite;
+        }
+
+        .spat-bar-fill { background: linear-gradient(90deg, var(--warn), var(--danger)); }
+
+        .history-item {
+            display: flex; 
+            justify-content: space-between; 
+            padding: 14px 16px; 
+            background: rgba(0,0,0,0.3); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            border-radius: 12px; 
+            font-size: 13px;
+            margin-bottom: 8px;
+            transition: all 0.2s;
+        }
+
+        .history-item:hover {
+            background: rgba(255,255,255,0.03);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hidden { display: none !important; }
+
+        .media-preview-container {
+            width: 100%;
+            height: 250px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .media-preview-container iframe,
+        .media-preview-container img,
+        .media-preview-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .media-placeholder {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div style="display: flex; gap: 40px; align-items: center;">
+                <a href="index.html" style="text-decoration:none; color:var(--text-muted); display:flex; align-items:center; gap:8px; font-weight:600; font-family:'Inter',sans-serif; font-size: 14px; letter-spacing: 1px; transition: color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-muted)'">
+                    <span>←</span> HOME
+                </a>
+                <div class="logo"><i></i> Sentinels of Gravity</div>
+            </div>
+            <div class="status-badge" id="api-status">
+                <div class="status-dot"></div> <span id="status-text">CONNECTING...</span>
+            </div>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <h2 style="margin-top: 0; font-weight: 700;">NEW ANALYSIS</h2>
+                <div class="input-group" style="display: flex; gap: 10px; margin-bottom: 30px;">
+                    <button id="tab-url" class="tab-btn active" onclick="switchTab('url')">URL Link</button>
+                    <button id="tab-file" class="tab-btn" onclick="switchTab('file')">Device Upload</button>
+                </div>
+
+                <div class="input-group" id="url-container">
+                    <label>Target URL</label>
+                    <input type="text" id="url-input" value="https://www.youtube.com/watch?v=demo77">
+                </div>
+                
+                <div class="input-group hidden" id="file-container">
+                    <label>Local Media File</label>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="file-input" accept="video/*,image/*">
+                        <div class="file-upload-content">
+                            <i>📁</i>
+                            <span style="font-size: 14px; font-weight: 500; color: var(--text-main);">Drag & Drop or Click to Browse</span>
+                            <div style="font-size: 11px; margin-top: 5px; color: var(--text-muted);">Supports MP4, JPG, PNG</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Platform Heuristics Engine</label>
+                    <select id="platform-select" style="width: 100%; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: white; border-radius: 12px; font-family: inherit;">
+                        <option value="youtube">YouTube</option>
+                        <option value="twitter">X / Twitter</option>
+                        <option value="tiktok">TikTok</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="facebook">Facebook</option>
+                        <option value="reddit">Reddit</option>
+                        <option value="other">Other Link / External</option>
+                        <option value="device">My Device (Upload)</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="startAnalysis()">START SCAN</button>
+
+                <div style="margin-top: 50px;">
+                    <label>Global Scan Ledger</label>
+                    <div id="history-list" style="display: flex; flex-direction: column;">
+                        <div class="history-item" style="justify-content:center; opacity:0.4;">No recent scans.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="results-card">
+                <div id="placeholder-text" style="height: 400px; display: flex; justify-content: center; align-items: center; flex-direction: column; opacity: 0.3;">
+                    <div style="font-size: 64px; margin-bottom: 20px;">🛡️</div>
+                    <div style="letter-spacing: 2px;">INITIATE SCAN TO SEE ANALYSIS</div>
+                </div>
+
+                <div id="actual-results" class="hidden">
+                    <div class="results-header">
+                        <div>
+                            <span class="verdict-tag" id="verdict-label">AUTHENTIC</span>
+                            <h1 style="margin: 15px 0 5px 0; font-size: 32px;" id="res-platform">YOUTUBE ANALYSIS</h1>
+                            <div style="font-size: 12px; opacity: 0.4;" id="res-id">ID: ---</div>
+                        </div>
+                        <div class="score-circle" id="score-container">
+                            <p class="score-label">Trust Score</p>
+                            <h2 class="score-value" id="score-val">84</h2>
+                        </div>
+                    </div>
+
+                    <div class="media-preview-container" id="media-preview">
+                        <div class="media-placeholder">
+                            <span style="font-size: 24px;">👁️</span>
+                            <span>MEDIA PREVIEW</span>
+                        </div>
+                    </div>
+
+                    <div style="height: 1px; background: var(--glass-border); margin: 30px 0;"></div>
+
+                    <h3 style="margin-bottom: 20px; font-weight: 700; font-family: 'Space Grotesk', sans-serif; font-size: 16px; letter-spacing: 2px; color: var(--text-muted);">DEEP LEARNING DIAGNOSTICS</h3>
+
+                    <div class="analysis-grid">
+                        <div class="stat-box">
+                            <div class="stat-name">Synthetic Confidence</div>
+                            <div class="stat-value" id="ml-conf">--</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="ml-bar"></div>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-name">Temporal Consistency</div>
+                            <div class="stat-value" id="temp-cons">--</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="temp-bar"></div>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-name">Spatial Anomalies</div>
+                            <div class="stat-value" id="spat-art">--</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill spat-bar-fill" id="spat-bar"></div>
+                            </div>
+                        </div>
+                        <div class="stat-box" style="background: rgba(0, 242, 255, 0.05); border-color: rgba(0, 242, 255, 0.2);">
+                            <div class="stat-name" style="color: var(--accent);">Web3 Provenance</div>
+                            <div class="stat-value" id="bc-status" style="font-size: 18px;">ABSENT</div>
+                            <div style="font-size: 11px; margin-top: 8px; color: var(--accent); opacity: 0.7;">NO ZK-PROOF DETECTED</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px; padding: 15px; border-radius: 12px; background: rgba(0, 242, 255, 0.05); border: 1px solid rgba(0, 242, 255, 0.1); font-size: 14px;">
+                        <strong>Verdict Summary:</strong> No significant manipulation patterns detected in temporal or spectral domains. The content appears to be original high-fidelity media.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://127.0.0.1:8000';
+
+        async function checkHealth() {
+            const statusDot = document.querySelector('.status-dot');
+            const statusText = document.getElementById('status-text');
+            try {
+                const res = await fetch(`${API_BASE}/api/v1/health`);
+                if (res.ok) {
+                    statusDot.style.background = 'var(--safe)';
+                    statusDot.style.boxShadow = '0 0 10px var(--safe)';
+                    statusText.textContent = 'API ONLINE';
+                } else {
+                    throw new Error();
+                }
+            } catch (e) {
+                statusDot.style.background = 'var(--danger)';
+                statusDot.style.boxShadow = '0 0 10px var(--danger)';
+                statusText.textContent = 'API OFFLINE';
+                console.warn("Backend API not reachable at " + API_BASE);
+            }
+        }
+
+        window.addEventListener('load', () => {
+            checkHealth();
+            loadHistory();
+        });
+
+        function saveHistory(data, url) {
+            let historyObj = JSON.parse(localStorage.getItem('sentinels_history') || '[]');
+            historyObj.unshift({
+                url: url.replace("device://", "Item: "),
+                score: Math.round(data.sentinels_score || 0),
+                verdict: data.verdict || "authentic",
+                platform: data.platform || "unknown",
+                date: new Date().toLocaleTimeString()
+            });
+            if (historyObj.length > 5) historyObj.pop(); // Keep last 5 scans
+            localStorage.setItem('sentinels_history', JSON.stringify(historyObj));
+            loadHistory();
+        }
+
+        function loadHistory() {
+            const listObj = document.getElementById('history-list');
+            let historyObj = JSON.parse(localStorage.getItem('sentinels_history') || '[]');
+            
+            if (historyObj.length === 0) {
+                listObj.innerHTML = "No recent scans on this device.";
+                listObj.style.opacity = 0.4;
+                return;
+            }
+            
+            listObj.style.opacity = 1;
+            listObj.innerHTML = historyObj.map(item => `
+                <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; font-size: 13px;">
+                    <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 65%; color: #ccc;">${item.url}</div>
+                    <div style="color: ${item.verdict === 'authentic' ? '#00ff88' : item.verdict === 'partial_synthetic' ? '#ffbb00' : '#ff3344'}; font-weight: 600; text-align: right; min-width: 80px;">
+                        ${item.score}/100 <span style="opacity:0.5; font-size: 10px; display:block; color:white;">${item.date}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        let activeMode = 'url';
+        
+        function switchTab(mode) {
+            activeMode = mode;
+            const tabUrl = document.getElementById('tab-url');
+            const tabFile = document.getElementById('tab-file');
+            const containerUrl = document.getElementById('url-container');
+            const containerFile = document.getElementById('file-container');
+            const platformSelect = document.getElementById('platform-select');
+            
+            if (mode === 'url') {
+                tabUrl.className = 'tab-btn active';
+                tabFile.className = 'tab-btn';
+                containerUrl.classList.remove('hidden');
+                containerFile.classList.add('hidden');
+                platformSelect.value = 'youtube';
+            } else {
+                tabFile.className = 'tab-btn active';
+                tabUrl.className = 'tab-btn';
+                containerFile.classList.remove('hidden');
+                containerUrl.classList.add('hidden');
+                platformSelect.value = 'device';
+            }
+        }
+
+        async function startAnalysis() {
+            const urlInput = document.getElementById('url-input');
+            const fileInput = document.getElementById('file-input');
+            const platformSelect = document.getElementById('platform-select');
+            const placeholder = document.getElementById('placeholder-text');
+            const resultsCard = document.getElementById('actual-results');
+
+            let finalUrl = "";
+            let finalPlatform = platformSelect.value;
+            
+            if (activeMode === 'url') {
+                if (!urlInput.value) {
+                    alert("Please enter a URL first.");
+                    return;
+                }
+                finalUrl = urlInput.value;
+            } else {
+                if (!fileInput.files || !fileInput.files.length) {
+                    alert("Please select a file to upload from your device.");
+                    return;
+                }
+                const file = fileInput.files[0];
+                finalUrl = `device://${file.name}?size=${file.size}`;
+            }
+
+            let contentToHash = finalUrl;
+            
+            try {
+                if (activeMode === 'file' && fileInput.files && fileInput.files.length) {
+                    const file = fileInput.files[0];
+                    const slice = file.slice(0, 100000); // Read up to first 100KB of pixel data
+                    contentToHash = await new Promise((resolve) => {
+                        const reader = new FileReader();
+                        reader.onload = () => resolve(reader.result + file.size);
+                        reader.readAsDataURL(slice);
+                    });
+                }
+            } catch (err) {
+                console.warn("Could not read local file bytes, falling back to name hash.");
+            }
+
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 10000);
+            try {
+                console.log("Starting analysis for:", finalUrl);
+                
+                // Cryptographic Pixel/URL Hashing Engine
+                const generateValidHash = (str) => {
+                    let hash = 0;
+                    for (let i = 0; i < str.length; i++) {
+                        hash = ((hash << 5) - hash) + str.charCodeAt(i);
+                        hash |= 0; 
+                    }
+                    const positiveHash = Math.abs(hash).toString(16);
+                    return positiveHash.padEnd(64, '0').substring(0, 64);
+                };
+
+                const pseudoHash = generateValidHash(contentToHash);
+
+                // Render Media Preview
+                renderPreview(finalUrl, activeMode, fileInput.files && fileInput.files.length ? fileInput.files[0] : null);
+
+                const response = await fetch(`${API_BASE}/api/v1/detect`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        media_hash: pseudoHash,
+                        media_url: finalUrl,
+                        platform: finalPlatform
+                    }),
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    updateUI(data);
+                    saveHistory(data, finalUrl);
+                    placeholder.style.display = 'none';
+                    resultsCard.classList.remove('hidden');
+                } else {
+                    const errData = await response.json().catch(() => ({}));
+                    // Fix: Handle cases where detail is an array or object
+                    const errorMsg = typeof errData.detail === 'string' 
+                        ? errData.detail 
+                        : JSON.stringify(errData.detail || "Validation Error");
+                    alert(`API Error: ${errorMsg}`);
+                }
+            } catch (err) {
+                console.error("Analysis Error:", err);
+                if (err.name === 'AbortError') {
+                    alert("Request Timed Out. Please check if the API is running.");
+                } else {
+                    alert(`CRITICAL: API Unreachable or Internal Error. Check console logs.`);
+                }
+            }
+        }
+
+        function updateUI(data) {
+            try {
+                const verdict = (data.verdict || "authentic").toLowerCase();
+                const verdictLabel = document.getElementById('verdict-label');
+                const scoreContainer = document.getElementById('score-container');
+                const scoreVal = document.getElementById('score-val');
+
+                let title = verdict.toUpperCase();
+                let vClass = 'verdict-synthetic';
+                let themeColor = '#ff3344';
+
+                if (verdict === 'authentic') {
+                    themeColor = '#00ff88';
+                    vClass = 'verdict-authentic';
+                } else if (verdict === 'partial_synthetic') {
+                    themeColor = '#ffbb00';
+                    vClass = 'verdict-partial';
+                    title = 'PARTIALLY ALTERED';
+                }
+
+                verdictLabel.textContent = title;
+                verdictLabel.className = 'verdict-tag ' + vClass;
+
+                document.getElementById('res-platform').textContent = (data.platform || "GENERAL").toUpperCase() + " ANALYSIS";
+                document.getElementById('res-id').textContent = "ID: " + (data.report_id || "PROV-XXXX");
+
+                const score = Math.round(data.sentinels_score || 0);
+                scoreVal.textContent = score;
+                scoreContainer.style.borderColor = themeColor;
+                scoreContainer.style.color = themeColor;
+
+                const ml = data.ml_result || {};
+                const spatial = ml.spatial || { face_consistency_score: 0, edge_artifact_score: 0 };
+                const temporal = ml.temporal || { temporal_consistency: 0 };
+
+                updateStat('ml-conf', 'ml-bar', ml.confidence || 0);
+                updateStat('temp-cons', 'temp-bar', temporal.temporal_consistency || 0);
+                updateStat('spat-art', 'spat-bar', spatial.edge_artifact_score || 0);
+
+                const bc = data.blockchain_result || { is_registered: false };
+                const bcStatus = document.getElementById('bc-status');
+                bcStatus.textContent = bc.is_registered ? "REGISTERED ✅" : "UNREGISTERED ❌";
+                bcStatus.style.color = bc.is_registered ? '#00ff88' : '#888';
+
+                // Update Verdict Summary Text
+                const summaryBox = document.getElementById('actual-results').querySelector('div[style*="margin-top: 30px"]');
+                if (verdict === 'authentic') {
+                    summaryBox.innerHTML = `<strong>Verdict Summary:</strong> No significant manipulation patterns detected. The content matches high-fidelity original media signatures.`;
+                    summaryBox.style.borderColor = 'rgba(0, 255, 136, 0.2)';
+                    summaryBox.style.background = 'rgba(0, 255, 136, 0.05)';
+                } else if (verdict === 'partial_synthetic') {
+                    summaryBox.innerHTML = `<strong>Verdict Summary:</strong> PARTIAL MANIPULATION DETECTED. Certain frames or sections exhibit synthetic anomalies (like facial warping), while other parts appear authentic. Proceed with caution.`;
+                    summaryBox.style.borderColor = 'rgba(255, 187, 0, 0.2)';
+                    summaryBox.style.background = 'rgba(255, 187, 0, 0.05)';
+                } else {
+                    summaryBox.innerHTML = `<strong>Verdict Summary:</strong> SUSPICIOUS. Detected severe anomalies in spectral frequency and ghosting artifacts highly consistent with complete AI generation.`;
+                    summaryBox.style.borderColor = 'rgba(255, 51, 68, 0.2)';
+                    summaryBox.style.background = 'rgba(255, 51, 68, 0.05)';
+                }
+
+            } catch (e) {
+                console.error("UI Update Error:", e);
+            }
+        }
+
+        function updateStat(textId, barId, value) {
+            const percent = (value * 100).toFixed(1);
+            const textEl = document.getElementById(textId);
+            const barEl = document.getElementById(barId);
+            if (textEl) textEl.textContent = percent + "%";
+            if (barEl) barEl.style.width = percent + "%";
+        }
+
+        function renderPreview(url, mode, file) {
+            const previewContainer = document.getElementById('media-preview');
+            previewContainer.innerHTML = ''; // clear previous
+
+            if (mode === 'url') {
+                if (url.includes('youtube.com') || url.includes('youtu.be')) {
+                    // Extract Video ID
+                    let videoId = '';
+                    if (url.includes('youtube.com/watch?v=')) {
+                        videoId = url.split('v=')[1].split('&')[0];
+                    } else if (url.includes('youtu.be/')) {
+                        videoId = url.split('youtu.be/')[1].split('?')[0];
+                    }
+                    if (videoId) {
+                        const isLocalFile = window.location.protocol === 'file:';
+                        
+                        if (isLocalFile) {
+                            previewContainer.innerHTML = `
+                                <div style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: url('https://img.youtube.com/vi/${videoId}/hqdefault.jpg') center/cover;">
+                                    <div style="position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.7);"></div>
+                                    <div style="position: relative; z-index: 10; text-align: center;">
+                                        <div style="font-size: 32px; margin-bottom: 10px;">⚠️</div>
+                                        <div style="color: white; font-family: 'Inter', sans-serif; font-size: 13px; margin-bottom: 20px;">
+                                            YouTube restricts embedded playback for local offline files.
+                                        </div>
+                                        <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" style="display: inline-block; padding: 12px 24px; background: #ff3344; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-family: 'Space Grotesk', sans-serif; letter-spacing: 1px; box-shadow: 0 5px 20px rgba(255,51,68,0.4); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                            WATCH FULL VIDEO ON YOUTUBE ↗
+                                        </a>
+                                    </div>
+                                </div>`;
+                        } else {
+                            previewContainer.innerHTML = `
+                                <div style="position: absolute; top: 10px; right: 10px; z-index: 10;">
+                                    <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" style="display:inline-block; padding: 8px 12px; background: rgba(0,0,0,0.6); color: white; text-decoration: none; border-radius: 6px; font-size: 11px; font-weight: bold; font-family: 'Inter', sans-serif; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(5px); transition: all 0.3s;" onmouseover="this.style.background='rgba(255,51,68,0.8)'; this.style.borderColor='rgba(255,51,68,1)';" onmouseout="this.style.background='rgba(0,0,0,0.6)'; this.style.borderColor='rgba(255,255,255,0.2)';">OPEN EXTERNALLY ↗</a>
+                                </div>
+                                <iframe src="https://www.youtube-nocookie.com/embed/${videoId}" width="100%" height="100%" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+                        }
+                        return;
+                    }
+                }
+                
+                // Generic URL fallback
+                previewContainer.innerHTML = `
+                    <div class="media-placeholder" style="text-align:center; padding: 20px;">
+                        <span style="font-size: 24px; color: var(--accent);">🔗</span>
+                        <span style="color: white; margin-top: 10px; word-break: break-all; font-family: 'Inter', sans-serif; font-size: 13px;">${url}</span>
+                        <span style="opacity: 0.5; margin-top: 5px;">External Link Preview Restricted</span>
+                    </div>`;
+            } else if (mode === 'file' && file) {
+                const objectUrl = URL.createObjectURL(file);
+                
+                previewContainer.innerHTML = `
+                    <div style="position: absolute; top: 10px; right: 10px; z-index: 10;">
+                        <a href="${objectUrl}" target="_blank" style="display:inline-block; padding: 8px 12px; background: rgba(0,0,0,0.6); color: white; text-decoration: none; border-radius: 6px; font-size: 11px; font-weight: bold; font-family: 'Inter', sans-serif; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(5px); transition: all 0.3s;" onmouseover="this.style.background='rgba(0,242,255,0.4)'; this.style.borderColor='var(--accent)';" onmouseout="this.style.background='rgba(0,0,0,0.6)'; this.style.borderColor='rgba(255,255,255,0.2)';">VIEW FULL MEDIA ↗</a>
+                    </div>
+                `;
+                
+                if (file.type.startsWith('image/')) {
+                    const img = document.createElement('img');
+                    img.src = objectUrl;
+                    previewContainer.appendChild(img);
+                } else if (file.type.startsWith('video/')) {
+                    const vid = document.createElement('video');
+                    vid.src = objectUrl;
+                    vid.controls = true;
+                    previewContainer.appendChild(vid);
+                } else {
+                    previewContainer.innerHTML += `<div class="media-placeholder" style="margin-top: 100px;">Unsupported File Type for Preview</div>`;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

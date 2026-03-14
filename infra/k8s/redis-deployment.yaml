@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentinels-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sentinels-redis
+  template:
+    metadata:
+      labels:
+        app: sentinels-redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:7-alpine
+          ports:
+            - containerPort: 6379
+          resources:
+            requests: { cpu: "100m", memory: "128Mi" }
+            limits: { cpu: "250m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sentinels-redis
+spec:
+  selector:
+    app: sentinels-redis
+  ports:
+    - port: 6379
+  type: ClusterIP

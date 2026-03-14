@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinels of Gravity | Welcome</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #02040a;
+            --bg-grad-1: #080d1a;
+            --bg-grad-2: #040710;
+            --glass: rgba(15, 20, 30, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent: #00f2ff;
+            --accent-glow: #0066ff;
+            --safe: #00ff88;
+            --text-main: #f0f4f8;
+            --text-muted: #8a9bb3;
+        }
+
+        @keyframes bgPulse {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            background: linear-gradient(-45deg, var(--bg-base), var(--bg-grad-1), var(--bg-base), var(--bg-grad-2));
+            background-size: 400% 400%;
+            animation: bgPulse 20s ease infinite;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Abstract Background Grid */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 80px 20px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin: 0;
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px rgba(0, 242, 255, 0.2);
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 20px auto 50px;
+            line-height: 1.6;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            width: 100%;
+            margin-bottom: 60px;
+            animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .feature-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: left;
+            transition: transform 0.3s, background 0.3s, border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 242, 255, 0.03);
+            border-color: rgba(0, 242, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,242,255,0.05);
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .launch-btn {
+            display: inline-block;
+            padding: 20px 50px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #000;
+            background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+            border-radius: 100px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4), inset 0 2px 0 rgba(255,255,255,0.4);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: fadeInUp 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .launch-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            transition: all 0.5s;
+        }
+
+        .launch-btn:hover::after {
+            left: 200%;
+        }
+
+        .launch-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.6), inset 0 2px 0 rgba(255,255,255,0.4);
+            color: #000;
+        }
+
+        .dev-info {
+            margin-top: auto;
+            margin-bottom: 30px;
+            padding: 25px 40px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 2s ease-out;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .dev-col {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .dev-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            opacity: 0.8;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .dev-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Abstract glowing orb */
+        .glow-orb {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0,242,255,0.15) 0%, transparent 70%);
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .hero-logo {
+            width: 100%;
+            max-width: 450px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 242, 255, 0.15);
+            animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .hero-logo:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 242, 255, 0.3);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow-orb"></div>
+    <div class="container">
+        
+        <!-- Add your logo image here and name it logo.jpg or logo.png to show up automatically! -->
+        <img src="logo.jpg" alt="Sentinels of Gravity Logo" class="hero-logo" onerror="this.src='logo.png'; this.onerror=function(){this.style.display='none';};">
+        
+        <h1 class="hero-title" style="display: none;">Sentinels of Gravity</h1>
+        <p class="hero-subtitle">The next-generation cybersecurity platform designed to authenticate digital media. We utilize advanced spatial-temporal deep learning and live heuristic web scraping to detect AI-generated video and image manipulations across the internet.</p>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <div class="feature-title">Deep AI Analysis</div>
+                <div class="feature-desc">Analyzes media across temporal and spatial domains to identify microscopic synthetic artifacts and facial warping.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <div class="feature-title">Live Web Scraping</div>
+                <div class="feature-desc">Dynamically fetches and scans internet links in real-time, instantly extracting known AI generation patterns.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⛓️</div>
+                <div class="feature-title">Web3 Provenance</div>
+                <div class="feature-desc">Simulated integration with blockchain ledgers to securely confirm cryptographic authenticity signatures.</div>
+            </div>
+        </div>
+
+        <a href="visual_demo.html" class="launch-btn">DEPLOY SCANNER UI</a>
+
+    </div>
+
+    <div class="dev-info">
+        <div class="dev-col">
+            <span class="dev-label">Developed By</span>
+            <span class="dev-value">Anil Khichar</span>
+        </div>
+        <div class="dev-col">
+            <span class="dev-label">Position</span>
+            <span class="dev-value">Security Analyst</span>
+        </div>
+        <div class="dev-col">
+            <span class="dev-label">Contact</span>
+            <span class="dev-value">+91 9049069577</span>
+        </div>
+        <div class="dev-col">
+            <span class="dev-label">Email</span>
+            <span class="dev-value">akhichar18@gmail.com</span>
+        </div>
+    </div>
+</body>
+</html>

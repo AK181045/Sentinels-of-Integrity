@@ -1,0 +1,13 @@
+.sentinel-popup { width: 360px; font-family: 'Inter', sans-serif; background: #0d1117; color: #e6edf3; }
+.popup-header { display: flex; align-items: center; gap: 10px; padding: 16px; background: linear-gradient(135deg, #1a1f2e, #0d1117); border-bottom: 1px solid #30363d; }
+.popup-header .logo { font-size: 28px; }
+.popup-header h1 { font-size: 16px; font-weight: 600; margin: 0; }
+.popup-nav { display: flex; border-bottom: 1px solid #30363d; }
+.nav-btn { flex: 1; padding: 10px; background: none; border: none; color: #8b949e; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+.nav-btn:hover { color: #e6edf3; background: rgba(255,255,255,0.05); }
+.nav-btn.active { color: #58a6ff; border-bottom: 2px solid #58a6ff; }
+.popup-content { padding: 16px; min-height: 200px; }
+.scan-btn { width: 100%; padding: 12px; background: linear-gradient(135deg, #238636, #2ea043); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: transform 0.1s; }
+.scan-btn:hover { transform: scale(1.02); }
+.scan-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.popup-footer { padding: 10px 16px; text-align: center; font-size: 11px; color: #484f58; border-top: 1px solid #30363d; }

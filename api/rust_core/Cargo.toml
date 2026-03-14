@@ -1,0 +1,45 @@
+[package]
+name = "sentinels-core"
+version = "0.1.0"
+edition = "2021"
+authors = ["Sentinels of Integrity Team"]
+description = "Memory-safe cryptographic primitives for Sentinels of Integrity — SHA-256 hashing, RS256 signing, and AES-256-GCM encryption."
+
+[lib]
+name = "sentinels_core"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# SHA-256 hashing
+sha2 = "0.10"
+hex = "0.4"
+
+# AES-256-GCM encryption
+aes-gcm = "0.10"
+rand = "0.8"
+
+# RSA signing (RS256 / X.509)
+rsa = "0.9"
+pkcs8 = { version = "0.10", features = ["std"] }
+signature = "2.2"
+
+# PyO3 for Python FFI bindings
+pyo3 = { version = "0.21", features = ["extension-module"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Base64 encoding
+base64 = "0.22"
+
+# Error handling
+thiserror = "1.0"
+
+[dev-dependencies]
+tempfile = "3.10"
+
+[profile.release]
+opt-level = 3
+lto = true
+strip = true

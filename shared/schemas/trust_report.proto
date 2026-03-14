@@ -1,0 +1,76 @@
+// =============================================================================
+// SENTINELS OF INTEGRITY — Trust Report Schema
+// Shared Protobuf definition for the Sentinels Score output.
+// =============================================================================
+
+syntax = "proto3";
+
+package sentinels.shared;
+
+option java_package = "com.sentinels.shared";
+option go_package = "sentinels/shared";
+
+// The final aggregated trust report returned to the extension.
+message TrustReport {
+  string report_id = 1;                   // Unique report identifier (UUID v4)
+  string media_hash = 2;                  // SHA-256 hash of the analyzed media
+  string media_url = 3;                   // Original URL where media was found
+  string platform = 4;                    // Platform: "youtube", "twitter", "tiktok"
+  double sentinels_score = 5;             // Aggregated trust score (0.0–100.0)
+  string verdict = 6;                     // "authentic", "suspicious", "synthetic"
+  
+  MLResult ml_result = 7;                 // ML detection sub-result
+  BlockchainResult blockchain_result = 8; // Blockchain verification sub-result
+  
+  string analyzed_at = 9;                 // ISO 8601 timestamp
+  double latency_ms = 10;                 // Total analysis latency in milliseconds
+}
+
+// ML detection engine output.
+message MLResult {
+  bool is_synthetic = 1;                  // Whether the media is detected as synthetic
+  double confidence = 2;                  // Confidence score (0.0–1.0)
+  repeated string artifacts = 3;          // Detected artifacts: "ghosting", "temporal_inconsistency", etc.
+  string model_version = 4;              // Model version used for inference
+  
+  SpatialAnalysis spatial = 5;
+  TemporalAnalysis temporal = 6;
+  FrequencyAnalysis frequency = 7;
+}
+
+// Spatial (CNN) analysis details.
+message SpatialAnalysis {
+  double face_consistency_score = 1;      // Face region consistency (0.0–1.0)
+  double edge_artifact_score = 2;         // Edge blending artifact score
+  int32 faces_detected = 3;              // Number of faces found in frame
+}
+
+// Temporal (GRU) analysis details.
+message TemporalAnalysis {
+  double temporal_consistency = 1;        // Frame-to-frame consistency (0.0–1.0)
+  int32 frames_analyzed = 2;             // Total frames processed
+  repeated int32 anomaly_frames = 3;     // Frame indices with detected anomalies
+}
+
+// Frequency domain analysis details.
+message FrequencyAnalysis {
+  double spectral_anomaly_score = 1;      // FFT/DCT anomaly score (0.0–1.0)
+  bool ghosting_detected = 2;            // Whether spectral ghosting is present
+}
+
+// Blockchain provenance verification output.
+message BlockchainResult {
+  bool is_registered = 1;                // Whether the hash exists on-chain
+  string author = 2;                     // Registered content creator address
+  string registration_tx = 3;           // Transaction hash of original registration
+  repeated EditRecord edit_history = 4;  // Chain of edits/modifications
+  bool zk_verified = 5;                 // Whether ZK proof was used for verification
+}
+
+// A single edit record in the content history.
+message EditRecord {
+  string editor = 1;                     // Address of the editor
+  string edit_hash = 2;                  // Hash of the edited version
+  string timestamp = 3;                  // ISO 8601 timestamp of the edit
+  string description = 4;               // Description of the modification
+}

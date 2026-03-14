@@ -1,0 +1,61 @@
+// =============================================================================
+// SENTINELS OF INTEGRITY — Blockchain Event Schema
+// Shared Protobuf definition for blockchain events and registrations.
+// =============================================================================
+
+syntax = "proto3";
+
+package sentinels.shared;
+
+option java_package = "com.sentinels.shared";
+option go_package = "sentinels/shared";
+
+// Event emitted when content is registered on-chain.
+message ContentRegisteredEvent {
+  string tx_hash = 1;                    // Transaction hash on Polygon zkEVM
+  string content_hash = 2;              // SHA-256 hash of the original media
+  string creator_address = 3;           // Ethereum address of the content creator
+  string metadata_uri = 4;             // IPFS/Arweave URI for metadata manifest
+  string block_number = 5;             // Block number where registration occurred
+  string timestamp = 6;                // ISO 8601 timestamp
+}
+
+// Event emitted when content integrity is verified.
+message IntegrityVerifiedEvent {
+  string content_hash = 1;              // SHA-256 hash being verified
+  bool is_verified = 2;                // Whether hash matches on-chain record
+  string verifier_address = 3;         // Address that requested verification
+  string merkle_root = 4;             // Merkle root of the content chunks
+  bool zk_proof_valid = 5;            // Whether ZK proof was valid
+  string timestamp = 6;               // ISO 8601 timestamp
+}
+
+// Event emitted when the multi-sig validators approve an update.
+message ValidatorApprovalEvent {
+  string proposal_id = 1;              // Proposal identifier
+  string proposer = 2;                // Address of the proposer
+  repeated string approvers = 3;      // Addresses of approving validators
+  int32 approvals_required = 4;       // Number of approvals needed (e.g., 3)
+  int32 approvals_received = 5;       // Number of approvals received
+  bool is_executed = 6;               // Whether the proposal was executed
+  string timestamp = 7;               // ISO 8601 timestamp
+}
+
+// Request to register new content on the blockchain.
+message ContentRegistrationRequest {
+  string content_hash = 1;              // SHA-256 hash of the media
+  string creator_address = 2;           // Creator's Ethereum address
+  string metadata_manifest = 3;        // JSON metadata (C2PA compliant)
+  repeated string chunk_hashes = 4;    // Merkle leaf hashes for chunk integrity
+  bytes zk_proof = 5;                 // Optional ZK proof for anonymous registration
+  bytes signature = 6;                // EIP-712 typed data signature
+}
+
+// Watermark verification result.
+message WatermarkVerification {
+  string content_hash = 1;              // Hash of the media being checked
+  bool watermark_found = 2;            // Whether a steganographic watermark was found
+  string embedded_hash = 3;           // Hash embedded in the watermark (if found)
+  bool matches_original = 4;          // Whether embedded hash matches on-chain record
+  double extraction_confidence = 5;   // Confidence of watermark extraction (0.0–1.0)
+}

@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'sentinels-api'
+    static_configs:
+      - targets: ['sentinels-api:8000']
+    metrics_path: /api/v1/health
+
+  - job_name: 'sentinels-ml'
+    static_configs:
+      - targets: ['sentinels-ml:8001']
+
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['sentinels-redis:6379']

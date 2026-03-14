@@ -1,0 +1,6 @@
+# Trivy Container Vulnerability Scanning
+# (TechStack.txt §5: "Snyk/Trivy scanning for vulnerabilities")
+severity: [CRITICAL, HIGH]
+vuln-type: [os, library]
+ignore-unfixed: true
+exit-code: 1

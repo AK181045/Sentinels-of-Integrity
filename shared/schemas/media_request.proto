@@ -1,0 +1,49 @@
+// =============================================================================
+// SENTINELS OF INTEGRITY — Media Analysis Request Schema
+// Shared Protobuf definition for media submission from extension to API.
+// =============================================================================
+
+syntax = "proto3";
+
+package sentinels.shared;
+
+option java_package = "com.sentinels.shared";
+option go_package = "sentinels/shared";
+
+// Request sent from the browser extension to the API for analysis.
+message MediaAnalysisRequest {
+  string request_id = 1;                  // Unique request identifier (UUID v4)
+  string media_hash = 2;                  // SHA-256 hash computed client-side (local-first)
+  string media_url = 3;                   // URL of the media on the platform
+  string platform = 4;                    // Source platform: "youtube", "twitter", "tiktok"
+  
+  MediaType media_type = 5;              // Type of media being analyzed
+  AnalysisOptions options = 6;           // Optional analysis configuration
+  
+  string submitted_at = 7;              // ISO 8601 timestamp
+  string extension_version = 8;         // Extension version for compatibility tracking
+}
+
+// Supported media types.
+enum MediaType {
+  MEDIA_TYPE_UNSPECIFIED = 0;
+  VIDEO = 1;
+  IMAGE = 2;
+  AUDIO = 3;
+}
+
+// Optional configuration for the analysis.
+message AnalysisOptions {
+  bool skip_blockchain = 1;              // Skip blockchain lookup (faster, ML-only)
+  bool detailed_report = 2;             // Include per-frame analysis details
+  int32 max_frames = 3;                 // Max frames to analyze (0 = auto)
+  double confidence_threshold = 4;      // Custom threshold for flagging (default: 0.7)
+}
+
+// Acknowledgment response from the API.
+message MediaAnalysisAck {
+  string request_id = 1;                // Echo back the request ID
+  string status = 2;                    // "accepted", "rejected", "rate_limited"
+  string estimated_completion_ms = 3;   // Estimated time to completion
+  string message = 4;                   // Human-readable status message
+}
