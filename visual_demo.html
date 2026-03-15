@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sentinels of Gravity | Next-Gen AI Scanner</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --bg-base: #030508;
@@ -24,9 +26,17 @@
         }
 
         @keyframes bgPulse {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         body {
@@ -45,10 +55,13 @@
         body::before {
             content: "";
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
             background-size: 40px 40px;
             z-index: -1;
             pointer-events: none;
@@ -112,9 +125,20 @@
         }
 
         @keyframes pulseDot {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(0, 255, 136, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(0, 255, 136, 0);
+            }
         }
 
         .status-dot {
@@ -138,7 +162,7 @@
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 40px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
@@ -147,7 +171,10 @@
         .card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; height: 1px;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
             background: linear-gradient(90deg, transparent, var(--glass-glow), transparent);
             opacity: 0.5;
         }
@@ -175,7 +202,8 @@
             font-weight: 600;
         }
 
-        input, select {
+        input,
+        select {
             width: 100%;
             padding: 18px 20px;
             background: rgba(0, 0, 0, 0.4);
@@ -187,13 +215,14 @@
             outline: none;
             transition: all 0.3s ease;
             box-sizing: border-box;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        input:focus, select:focus {
+        input:focus,
+        select:focus {
             border-color: var(--accent);
             background: rgba(0, 0, 0, 0.6);
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), 0 0 15px rgba(0, 242, 255, 0.1);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 242, 255, 0.1);
         }
 
         select option {
@@ -204,9 +233,9 @@
         .file-upload-wrapper {
             position: relative;
             overflow: hidden;
-            border: 2px dashed rgba(255,255,255,0.15);
+            border: 2px dashed rgba(255, 255, 255, 0.15);
             border-radius: 16px;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
             transition: all 0.3s;
             text-align: center;
         }
@@ -219,8 +248,12 @@
         #file-input {
             opacity: 0;
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
             cursor: pointer;
             z-index: 2;
         }
@@ -229,18 +262,23 @@
             padding: 30px 20px;
             pointer-events: none;
         }
-        
+
         .file-upload-content i {
-            display: block; font-size: 24px; color: var(--accent); margin-bottom: 10px; font-style: normal;
+            display: block;
+            font-size: 24px;
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-style: normal;
         }
 
         .tab-btn {
-            flex: 1; padding: 14px; 
-            background: rgba(0,0,0,0.4); 
-            border: 1px solid rgba(255,255,255,0.1); 
-            color: var(--text-muted); 
-            border-radius: 12px; 
-            cursor: pointer; 
+            flex: 1;
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            border-radius: 12px;
+            cursor: pointer;
             font-weight: 600;
             font-family: 'Inter', sans-serif;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -266,8 +304,8 @@
             letter-spacing: 2px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            text-shadow: 0 1px 2px rgba(255,255,255,0.3);
-            box-shadow: 0 10px 20px rgba(0, 102, 255, 0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 102, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
             position: relative;
             overflow: hidden;
             margin-top: 10px;
@@ -276,8 +314,11 @@
         .btn::after {
             content: '';
             position: absolute;
-            top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
             transition: all 0.5s;
         }
 
@@ -287,7 +328,7 @@
 
         .btn:hover {
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 102, 255, 0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+            box-shadow: 0 15px 30px rgba(0, 102, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
 
         .results-header {
@@ -298,9 +339,17 @@
         }
 
         @keyframes glowingRing {
-            0% { box-shadow: 0 0 0 0 currentColor, inset 0 0 20px currentColor; }
-            50% { box-shadow: 0 0 20px 0 currentColor, inset 0 0 40px currentColor; }
-            100% { box-shadow: 0 0 0 0 currentColor, inset 0 0 20px currentColor; }
+            0% {
+                box-shadow: 0 0 0 0 currentColor, inset 0 0 20px currentColor;
+            }
+
+            50% {
+                box-shadow: 0 0 20px 0 currentColor, inset 0 0 40px currentColor;
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 currentColor, inset 0 0 20px currentColor;
+            }
         }
 
         .score-circle {
@@ -313,7 +362,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
             animation: glowingRing 3s infinite alternate;
             transition: color 0.5s ease;
         }
@@ -336,19 +385,37 @@
             font-weight: 600;
         }
 
-        .verdict-tag { 
-            display: inline-block; 
-            padding: 8px 16px; 
-            border-radius: 8px; 
-            font-size: 13px; 
+        .verdict-tag {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
             font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700; 
-            letter-spacing: 2px; 
+            font-weight: 700;
+            letter-spacing: 2px;
             text-shadow: 0 0 10px currentColor;
         }
-        .verdict-authentic { background: rgba(0, 255, 136, 0.1); color: #00ff88; border: 1px solid rgba(0, 255, 136, 0.3); box-shadow: 0 0 20px rgba(0,255,136,0.1); }
-        .verdict-synthetic { background: rgba(255, 51, 68, 0.1); color: #ff3344; border: 1px solid rgba(255, 51, 68, 0.3); box-shadow: 0 0 20px rgba(255,51,68,0.1); }
-        .verdict-partial { background: rgba(255, 187, 0, 0.1); color: #ffbb00; border: 1px solid rgba(255, 187, 0, 0.3); box-shadow: 0 0 20px rgba(255,187,0,0.1); }
+
+        .verdict-authentic {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.1);
+        }
+
+        .verdict-synthetic {
+            background: rgba(255, 51, 68, 0.1);
+            color: #ff3344;
+            border: 1px solid rgba(255, 51, 68, 0.3);
+            box-shadow: 0 0 20px rgba(255, 51, 68, 0.1);
+        }
+
+        .verdict-partial {
+            background: rgba(255, 187, 0, 0.1);
+            color: #ffbb00;
+            border: 1px solid rgba(255, 187, 0, 0.3);
+            box-shadow: 0 0 20px rgba(255, 187, 0, 0.1);
+        }
 
         .analysis-grid {
             display: grid;
@@ -361,14 +428,14 @@
             background: rgba(0, 0, 0, 0.3);
             padding: 24px;
             border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: transform 0.3s, background 0.3s;
         }
-        
+
         .stat-box:hover {
             transform: translateY(-5px);
-            background: rgba(255,255,255,0.02);
-            border-color: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
         .stat-name {
@@ -384,7 +451,7 @@
             font-size: 24px;
             font-weight: 700;
             color: var(--text-main);
-            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
         .progress-bar {
@@ -397,8 +464,13 @@
         }
 
         @keyframes scanRun {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(200%); }
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(200%);
+            }
         }
 
         .progress-fill {
@@ -408,44 +480,66 @@
             transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
         }
-        
+
         .progress-fill::after {
-            content:'';
-            position: absolute; top:0; left:0; width:50%; height:100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
             animation: scanRun 2s infinite;
         }
 
-        .spat-bar-fill { background: linear-gradient(90deg, var(--warn), var(--danger)); }
+        .spat-bar-fill {
+            background: linear-gradient(90deg, var(--warn), var(--danger));
+        }
 
         .history-item {
-            display: flex; 
-            justify-content: space-between; 
-            padding: 14px 16px; 
-            background: rgba(0,0,0,0.3); 
-            border: 1px solid rgba(255,255,255,0.05); 
-            border-radius: 12px; 
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
             font-size: 13px;
             margin-bottom: 8px;
             transition: all 0.2s;
         }
 
         .history-item:hover {
-            background: rgba(255,255,255,0.03);
-            border-color: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .hidden { display: none !important; }
+        .hidden {
+            display: none !important;
+        }
 
         .media-preview-container {
             width: 100%;
@@ -486,7 +580,9 @@
     <div class="container">
         <header>
             <div style="display: flex; gap: 40px; align-items: center;">
-                <a href="index.html" style="text-decoration:none; color:var(--text-muted); display:flex; align-items:center; gap:8px; font-weight:600; font-family:'Inter',sans-serif; font-size: 14px; letter-spacing: 1px; transition: color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-muted)'">
+                <a href="index.html"
+                    style="text-decoration:none; color:var(--text-muted); display:flex; align-items:center; gap:8px; font-weight:600; font-family:'Inter',sans-serif; font-size: 14px; letter-spacing: 1px; transition: color 0.3s;"
+                    onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-muted)'">
                     <span>←</span> HOME
                 </a>
                 <div class="logo"><i></i> Sentinels of Gravity</div>
@@ -508,22 +604,25 @@
                     <label>Target URL</label>
                     <input type="text" id="url-input" value="https://www.youtube.com/watch?v=demo77">
                 </div>
-                
+
                 <div class="input-group hidden" id="file-container">
                     <label>Local Media File</label>
                     <div class="file-upload-wrapper">
                         <input type="file" id="file-input" accept="video/*,image/*">
                         <div class="file-upload-content">
                             <i>📁</i>
-                            <span style="font-size: 14px; font-weight: 500; color: var(--text-main);">Drag & Drop or Click to Browse</span>
-                            <div style="font-size: 11px; margin-top: 5px; color: var(--text-muted);">Supports MP4, JPG, PNG</div>
+                            <span style="font-size: 14px; font-weight: 500; color: var(--text-main);">Drag & Drop or
+                                Click to Browse</span>
+                            <div style="font-size: 11px; margin-top: 5px; color: var(--text-muted);">Supports MP4, JPG,
+                                PNG</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="input-group">
                     <label>Platform Heuristics Engine</label>
-                    <select id="platform-select" style="width: 100%; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: white; border-radius: 12px; font-family: inherit;">
+                    <select id="platform-select"
+                        style="width: 100%; padding: 15px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: white; border-radius: 12px; font-family: inherit;">
                         <option value="youtube">YouTube</option>
                         <option value="twitter">X / Twitter</option>
                         <option value="tiktok">TikTok</option>
@@ -545,7 +644,8 @@
             </div>
 
             <div class="card" id="results-card">
-                <div id="placeholder-text" style="height: 400px; display: flex; justify-content: center; align-items: center; flex-direction: column; opacity: 0.3;">
+                <div id="placeholder-text"
+                    style="height: 400px; display: flex; justify-content: center; align-items: center; flex-direction: column; opacity: 0.3;">
                     <div style="font-size: 64px; margin-bottom: 20px;">🛡️</div>
                     <div style="letter-spacing: 2px;">INITIATE SCAN TO SEE ANALYSIS</div>
                 </div>
@@ -572,7 +672,9 @@
 
                     <div style="height: 1px; background: var(--glass-border); margin: 30px 0;"></div>
 
-                    <h3 style="margin-bottom: 20px; font-weight: 700; font-family: 'Space Grotesk', sans-serif; font-size: 16px; letter-spacing: 2px; color: var(--text-muted);">DEEP LEARNING DIAGNOSTICS</h3>
+                    <h3
+                        style="margin-bottom: 20px; font-weight: 700; font-family: 'Space Grotesk', sans-serif; font-size: 16px; letter-spacing: 2px; color: var(--text-muted);">
+                        DEEP LEARNING DIAGNOSTICS</h3>
 
                     <div class="analysis-grid">
                         <div class="stat-box">
@@ -596,15 +698,19 @@
                                 <div class="progress-fill spat-bar-fill" id="spat-bar"></div>
                             </div>
                         </div>
-                        <div class="stat-box" style="background: rgba(0, 242, 255, 0.05); border-color: rgba(0, 242, 255, 0.2);">
+                        <div class="stat-box"
+                            style="background: rgba(0, 242, 255, 0.05); border-color: rgba(0, 242, 255, 0.2);">
                             <div class="stat-name" style="color: var(--accent);">Web3 Provenance</div>
                             <div class="stat-value" id="bc-status" style="font-size: 18px;">ABSENT</div>
-                            <div style="font-size: 11px; margin-top: 8px; color: var(--accent); opacity: 0.7;">NO ZK-PROOF DETECTED</div>
+                            <div style="font-size: 11px; margin-top: 8px; color: var(--accent); opacity: 0.7;">NO
+                                ZK-PROOF DETECTED</div>
                         </div>
                     </div>
 
-                    <div style="margin-top: 30px; padding: 15px; border-radius: 12px; background: rgba(0, 242, 255, 0.05); border: 1px solid rgba(0, 242, 255, 0.1); font-size: 14px;">
-                        <strong>Verdict Summary:</strong> No significant manipulation patterns detected in temporal or spectral domains. The content appears to be original high-fidelity media.
+                    <div
+                        style="margin-top: 30px; padding: 15px; border-radius: 12px; background: rgba(0, 242, 255, 0.05); border: 1px solid rgba(0, 242, 255, 0.1); font-size: 14px;">
+                        <strong>Verdict Summary:</strong> No significant manipulation patterns detected in temporal or
+                        spectral domains. The content appears to be original high-fidelity media.
                     </div>
                 </div>
             </div>
@@ -656,13 +762,13 @@
         function loadHistory() {
             const listObj = document.getElementById('history-list');
             let historyObj = JSON.parse(localStorage.getItem('sentinels_history') || '[]');
-            
+
             if (historyObj.length === 0) {
                 listObj.innerHTML = "No recent scans on this device.";
                 listObj.style.opacity = 0.4;
                 return;
             }
-            
+
             listObj.style.opacity = 1;
             listObj.innerHTML = historyObj.map(item => `
                 <div style="display: flex; justify-content: space-between; padding: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; font-size: 13px;">
@@ -675,7 +781,7 @@
         }
 
         let activeMode = 'url';
-        
+
         function switchTab(mode) {
             activeMode = mode;
             const tabUrl = document.getElementById('tab-url');
@@ -683,7 +789,7 @@
             const containerUrl = document.getElementById('url-container');
             const containerFile = document.getElementById('file-container');
             const platformSelect = document.getElementById('platform-select');
-            
+
             if (mode === 'url') {
                 tabUrl.className = 'tab-btn active';
                 tabFile.className = 'tab-btn';
@@ -708,7 +814,7 @@
 
             let finalUrl = "";
             let finalPlatform = platformSelect.value;
-            
+
             if (activeMode === 'url') {
                 if (!urlInput.value) {
                     alert("Please enter a URL first.");
@@ -725,7 +831,7 @@
             }
 
             let contentToHash = finalUrl;
-            
+
             try {
                 if (activeMode === 'file' && fileInput.files && fileInput.files.length) {
                     const file = fileInput.files[0];
@@ -744,13 +850,13 @@
             const timeoutId = setTimeout(() => controller.abort(), 10000);
             try {
                 console.log("Starting analysis for:", finalUrl);
-                
+
                 // Cryptographic Pixel/URL Hashing Engine
                 const generateValidHash = (str) => {
                     let hash = 0;
                     for (let i = 0; i < str.length; i++) {
                         hash = ((hash << 5) - hash) + str.charCodeAt(i);
-                        hash |= 0; 
+                        hash |= 0;
                     }
                     const positiveHash = Math.abs(hash).toString(16);
                     return positiveHash.padEnd(64, '0').substring(0, 64);
@@ -758,7 +864,7 @@
 
                 const pseudoHash = generateValidHash(contentToHash);
 
-                // Render Media Preview
+
                 renderPreview(finalUrl, activeMode, fileInput.files && fileInput.files.length ? fileInput.files[0] : null);
 
                 const response = await fetch(`${API_BASE}/api/v1/detect`, {
@@ -783,8 +889,8 @@
                 } else {
                     const errData = await response.json().catch(() => ({}));
                     // Fix: Handle cases where detail is an array or object
-                    const errorMsg = typeof errData.detail === 'string' 
-                        ? errData.detail 
+                    const errorMsg = typeof errData.detail === 'string'
+                        ? errData.detail
                         : JSON.stringify(errData.detail || "Validation Error");
                     alert(`API Error: ${errorMsg}`);
                 }
@@ -886,7 +992,7 @@
                     }
                     if (videoId) {
                         const isLocalFile = window.location.protocol === 'file:';
-                        
+
                         if (isLocalFile) {
                             previewContainer.innerHTML = `
                                 <div style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: url('https://img.youtube.com/vi/${videoId}/hqdefault.jpg') center/cover;">
@@ -911,7 +1017,7 @@
                         return;
                     }
                 }
-                
+
                 // Generic URL fallback
                 previewContainer.innerHTML = `
                     <div class="media-placeholder" style="text-align:center; padding: 20px;">
@@ -921,13 +1027,13 @@
                     </div>`;
             } else if (mode === 'file' && file) {
                 const objectUrl = URL.createObjectURL(file);
-                
+
                 previewContainer.innerHTML = `
                     <div style="position: absolute; top: 10px; right: 10px; z-index: 10;">
                         <a href="${objectUrl}" target="_blank" style="display:inline-block; padding: 8px 12px; background: rgba(0,0,0,0.6); color: white; text-decoration: none; border-radius: 6px; font-size: 11px; font-weight: bold; font-family: 'Inter', sans-serif; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(5px); transition: all 0.3s;" onmouseover="this.style.background='rgba(0,242,255,0.4)'; this.style.borderColor='var(--accent)';" onmouseout="this.style.background='rgba(0,0,0,0.6)'; this.style.borderColor='rgba(255,255,255,0.2)';">VIEW FULL MEDIA ↗</a>
                     </div>
                 `;
-                
+
                 if (file.type.startsWith('image/')) {
                     const img = document.createElement('img');
                     img.src = objectUrl;
@@ -944,4 +1050,5 @@
         }
     </script>
 </body>
+
 </html>
