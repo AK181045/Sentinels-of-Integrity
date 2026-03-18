@@ -720,28 +720,55 @@
     <script>
         const API_BASE = 'http://127.0.0.1:8000';
 
+        // ─── API Health Monitor — auto-reconnects every 5 seconds ───────────────
+        let _apiOnline = false;
+        let _healthTimer = null;
+
         async function checkHealth() {
             const statusDot = document.querySelector('.status-dot');
             const statusText = document.getElementById('status-text');
+            const badge = document.getElementById('api-status');
+
+            // Show "connecting" pulse while attempting
+            statusDot.style.background = '#ffbb00';
+            statusDot.style.boxShadow = '0 0 10px #ffbb00';
+            if (!_apiOnline) statusText.textContent = 'CONNECTING...';
+
             try {
-                const res = await fetch(`${API_BASE}/api/v1/health`);
+                const controller = new AbortController();
+                const tid = setTimeout(() => controller.abort(), 4000); // 4s timeout per check
+                const res = await fetch(`${API_BASE}/api/v1/health`, { signal: controller.signal });
+                clearTimeout(tid);
+
                 if (res.ok) {
+                    if (!_apiOnline) {
+                        // First time coming online — flash green
+                        badge.style.transition = 'box-shadow 0.4s';
+                        badge.style.boxShadow = '0 0 20px rgba(0,255,136,0.5)';
+                        setTimeout(() => { badge.style.boxShadow = ''; }, 1000);
+                    }
+                    _apiOnline = true;
                     statusDot.style.background = 'var(--safe)';
                     statusDot.style.boxShadow = '0 0 10px var(--safe)';
                     statusText.textContent = 'API ONLINE';
                 } else {
-                    throw new Error();
+                    throw new Error('non-ok status');
                 }
             } catch (e) {
+                _apiOnline = false;
                 statusDot.style.background = 'var(--danger)';
                 statusDot.style.boxShadow = '0 0 10px var(--danger)';
                 statusText.textContent = 'API OFFLINE';
-                console.warn("Backend API not reachable at " + API_BASE);
+                console.warn('[Sentinels] API not reachable at ' + API_BASE + ' — retrying in 5s...');
             }
+
+            // Schedule next check (5 seconds if offline for fast recovery, 15s if online)
+            clearTimeout(_healthTimer);
+            _healthTimer = setTimeout(checkHealth, _apiOnline ? 15000 : 5000);
         }
 
         window.addEventListener('load', () => {
-            checkHealth();
+            checkHealth();   // immediate first check
             loadHistory();
         });
 

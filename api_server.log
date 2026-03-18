@@ -1,0 +1,41 @@
+INFO:     Will watch for changes in these directories: ['C:\\Users\\SAI\\Desktop\\Sentinals of integrity\\api']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [14700] using WatchFiles
+C:\Users\SAI\AppData\Local\Programs\Python\Python313\Lib\site-packages\pydantic\_internal\_fields.py:132: UserWarning: Field "model_version" in MLResultResponse has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [9892]
+INFO:     Waiting for application startup.
+2026-03-18 18:10:06 | INFO | sentinels.api | \U0001f6e1\ufe0f  Sentinels of Integrity API starting up...
+2026-03-18 18:10:06 | INFO | sentinels.api |    Environment: development
+2026-03-18 18:10:06 | INFO | sentinels.api |    API Version: v1
+2026-03-18 18:10:06 | INFO | sentinels.api |    Debug Mode: True
+2026-03-18 18:10:06 | INFO | sentinels.api | \u2705 All services initialized successfully
+INFO:     Application startup complete.
+INFO:     127.0.0.1:50054 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50055 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50055 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50056 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50056 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50064 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50064 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50066 - "OPTIONS /api/v1/detect HTTP/1.1" 200 OK
+2026-03-18 18:10:31 | INFO | sentinels.api.detection | Detection request received | report_id=9e7dd685-2d38-4073-a606-f358d3ccd0b2 | platform=Platform.DEVICE | media_hash=11043ee500000000...
+2026-03-18 18:10:31 | INFO | sentinels.services.detection | Initiating deep analysis for: device://AI2.jpeg?size=113867
+2026-03-18 18:10:31 | INFO | sentinels.services.blockchain | Blockchain verification | hash=11043ee500000000...
+2026-03-18 18:10:31 | INFO | sentinels.services.blockchain | Blockchain verification completed | hash=11043ee500000000... | registered=False | latency=0.7ms
+2026-03-18 18:10:31 | INFO | sentinels.services.detection | Analysis completed in 18.3ms
+2026-03-18 18:10:31 | INFO | sentinels.services.score_aggregator | Score: 51.2 | Verdict: partial_synthetic
+2026-03-18 18:10:31 | INFO | sentinels.api.detection | Detection completed | report_id=9e7dd685-2d38-4073-a606-f358d3ccd0b2 | score=51.2 | verdict=partial_synthetic
+INFO:     127.0.0.1:50066 - "POST /api/v1/detect HTTP/1.1" 200 OK
+2026-03-18 18:10:31 | INFO | sentinels.services.detection | Stored report | id=9e7dd685-2d38-4073-a606-f358d3ccd0b2
+INFO:     127.0.0.1:50066 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50067 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50067 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50068 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50070 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50070 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50078 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50081 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50081 - "GET /api/v1/health HTTP/1.1" 200 OK

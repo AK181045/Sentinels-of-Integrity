@@ -78,11 +78,16 @@ app = FastAPI(
 # Middleware Stack (order matters — outermost first)
 # =============================================================================
 
-# CORS — allow extension to communicate with API
+# CORS — allow extension and local file:// pages to communicate with API
+# "null" origin is sent by browsers for local file:// pages (visual_demo.html etc.)
+_cors_origins = list(settings.CORS_ALLOWED_ORIGINS)
+if "null" not in _cors_origins:
+    _cors_origins.append("null")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ALLOWED_ORIGINS,
-    allow_credentials=False, # Must be false if origins contains "*"
+    allow_origins=_cors_origins,
+    allow_credentials=False,  # Must be False when origins includes "*"
     allow_methods=["*"],
     allow_headers=["*"],
 )

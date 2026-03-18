@@ -286,7 +286,7 @@
             </div>
         </div>
 
-        <a href="visual_demo.html" class="launch-btn">DEPLOY SCANNER UI</a>
+        <a href="visual_demo.html" class="launch-btn" id="launch-btn">DEPLOY SCANNER UI</a>
 
     </div>
 
@@ -307,6 +307,85 @@
             <span class="dev-label">Email</span>
             <span class="dev-value">akhichar18@gmail.com</span>
         </div>
+        <!-- API status pill -->
+        <div class="dev-col" style="margin-left:auto;">
+            <span class="dev-label">Backend</span>
+            <span class="dev-value" id="home-api-dot" style="display:flex;align-items:center;gap:8px;">
+                <span id="home-dot" style="width:10px;height:10px;border-radius:50%;background:#ffbb00;box-shadow:0 0 8px #ffbb00;display:inline-block;transition:all 0.4s;"></span>
+                <span id="home-status" style="font-size:13px;transition:all 0.4s;">CONNECTING</span>
+            </span>
+        </div>
     </div>
+
+    <!-- ── API Offline Banner ─────────────────────────────────────────────── -->
+    <div id="api-banner" style="
+        position:fixed; bottom:0; left:0; right:0;
+        background:linear-gradient(90deg,rgba(255,51,68,0.12),rgba(255,187,0,0.08));
+        border-top:1px solid rgba(255,187,0,0.3);
+        padding:14px 30px;
+        display:flex; align-items:center; justify-content:center; gap:20px;
+        backdrop-filter:blur(10px);
+        z-index:999;
+        font-family:'Inter',sans-serif;
+        font-size:14px;
+        transition:transform 0.5s cubic-bezier(0.16,1,0.3,1), opacity 0.5s;
+    ">
+        <span style="font-size:20px;">⚡</span>
+        <span style="color:#fff;">
+            <strong style="color:#ffbb00;">API not started.</strong>
+            Double-click <code style="background:rgba(255,255,255,0.1);padding:2px 8px;border-radius:6px;color:#00f2ff;">RUN_PROJECT.bat</code>
+            to launch everything automatically.
+        </span>
+        <span id="banner-spinner" style="color:#ffbb00;font-size:13px;opacity:0.8;">Checking every 5s...</span>
+    </div>
+
+    <script>
+        // ── API Status Watcher ────────────────────────────────────────────────
+        const API_BASE = 'http://127.0.0.1:8000';
+        let _on = false, _timer = null;
+
+        async function watchAPI() {
+            const dot = document.getElementById('home-dot');
+            const txt = document.getElementById('home-status');
+            const banner = document.getElementById('api-banner');
+
+            try {
+                const ctrl = new AbortController();
+                setTimeout(() => ctrl.abort(), 4000);
+                const r = await fetch(`${API_BASE}/api/v1/health`, { signal: ctrl.signal });
+                if (!r.ok) throw new Error();
+
+                // ── ONLINE ──
+                dot.style.background = '#00ff88';
+                dot.style.boxShadow = '0 0 10px #00ff88';
+                txt.textContent = 'ONLINE';
+                txt.style.color = '#00ff88';
+
+                if (!_on) {
+                    // Slide banner out
+                    banner.style.transform = 'translateY(100%)';
+                    banner.style.opacity = '0';
+                    setTimeout(() => banner.style.display = 'none', 500);
+                    _on = true;
+                }
+            } catch (e) {
+                // ── OFFLINE ──
+                dot.style.background = '#ff3344';
+                dot.style.boxShadow = '0 0 10px #ff3344';
+                txt.textContent = 'OFFLINE';
+                txt.style.color = '#ff3344';
+                banner.style.display = 'flex';
+                banner.style.transform = '';
+                banner.style.opacity = '1';
+                _on = false;
+            }
+
+            clearTimeout(_timer);
+            _timer = setTimeout(watchAPI, _on ? 15000 : 5000);
+        }
+
+        window.addEventListener('load', watchAPI);
+    </script>
 </body>
 </html>
+
