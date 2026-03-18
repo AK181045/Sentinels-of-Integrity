@@ -1,64 +1,533 @@
 INFO:     Will watch for changes in these directories: ['C:\\Users\\SAI\\Desktop\\Sentinals of integrity\\api']
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [14700] using WatchFiles
+INFO:     Started reloader process [10916] using WatchFiles
 C:\Users\SAI\AppData\Local\Programs\Python\Python313\Lib\site-packages\pydantic\_internal\_fields.py:132: UserWarning: Field "model_version" in MLResultResponse has conflict with protected namespace "model_".
 
 You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
   warnings.warn(
-INFO:     Started server process [9892]
+INFO:     Started server process [7184]
 INFO:     Waiting for application startup.
-2026-03-18 18:10:06 | INFO | sentinels.api | \U0001f6e1\ufe0f  Sentinels of Integrity API starting up...
-2026-03-18 18:10:06 | INFO | sentinels.api |    Environment: development
-2026-03-18 18:10:06 | INFO | sentinels.api |    API Version: v1
-2026-03-18 18:10:06 | INFO | sentinels.api |    Debug Mode: True
-2026-03-18 18:10:06 | INFO | sentinels.api | \u2705 All services initialized successfully
+2026-03-18 18:21:14 | INFO | sentinels.api | \U0001f6e1\ufe0f  Sentinels of Integrity API starting up...
+2026-03-18 18:21:14 | INFO | sentinels.api |    Environment: development
+2026-03-18 18:21:14 | INFO | sentinels.api |    API Version: v1
+2026-03-18 18:21:14 | INFO | sentinels.api |    Debug Mode: True
+2026-03-18 18:21:14 | INFO | sentinels.api | \u2705 All services initialized successfully
 INFO:     Application startup complete.
-INFO:     127.0.0.1:50054 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50055 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50055 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50056 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50056 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50064 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50064 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50066 - "OPTIONS /api/v1/detect HTTP/1.1" 200 OK
-2026-03-18 18:10:31 | INFO | sentinels.api.detection | Detection request received | report_id=9e7dd685-2d38-4073-a606-f358d3ccd0b2 | platform=Platform.DEVICE | media_hash=11043ee500000000...
-2026-03-18 18:10:31 | INFO | sentinels.services.detection | Initiating deep analysis for: device://AI2.jpeg?size=113867
-2026-03-18 18:10:31 | INFO | sentinels.services.blockchain | Blockchain verification | hash=11043ee500000000...
-2026-03-18 18:10:31 | INFO | sentinels.services.blockchain | Blockchain verification completed | hash=11043ee500000000... | registered=False | latency=0.7ms
-2026-03-18 18:10:31 | INFO | sentinels.services.detection | Analysis completed in 18.3ms
-2026-03-18 18:10:31 | INFO | sentinels.services.score_aggregator | Score: 51.2 | Verdict: partial_synthetic
-2026-03-18 18:10:31 | INFO | sentinels.api.detection | Detection completed | report_id=9e7dd685-2d38-4073-a606-f358d3ccd0b2 | score=51.2 | verdict=partial_synthetic
-INFO:     127.0.0.1:50066 - "POST /api/v1/detect HTTP/1.1" 200 OK
-2026-03-18 18:10:31 | INFO | sentinels.services.detection | Stored report | id=9e7dd685-2d38-4073-a606-f358d3ccd0b2
-INFO:     127.0.0.1:50066 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50067 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50067 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50068 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50070 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50070 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50078 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50081 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50081 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50082 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50087 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50087 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50118 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50120 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50120 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50121 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50123 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50123 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50128 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50133 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50133 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50134 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50136 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50139 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50139 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50139 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50145 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50145 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50155 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50157 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50157 - "GET /api/v1/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50158 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50383 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50384 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50388 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50388 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50399 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50415 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50437 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50445 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50447 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50448 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50449 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50459 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50461 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50463 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50467 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50473 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50476 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50477 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50485 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50487 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50489 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50515 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50520 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50522 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50523 - "GET /api/v1/health HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app\models\schemas.py'. Reloading...
+INFO:     127.0.0.1:50526 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50527 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50528 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50529 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50530 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50531 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-03-18 18:28:47 | INFO | sentinels.api | \U0001f6d1 Sentinels of Integrity API shutting down...
+2026-03-18 18:28:47 | INFO | sentinels.api | \U0001f44b Goodbye!
+INFO:     Application shutdown complete.
+INFO:     Finished server process [7184]
+C:\Users\SAI\AppData\Local\Programs\Python\Python313\Lib\site-packages\pydantic\_internal\_fields.py:132: UserWarning: Field "model_version" in MLResultResponse has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [9112]
+INFO:     Waiting for application startup.
+2026-03-18 18:28:49 | INFO | sentinels.api | \U0001f6e1\ufe0f  Sentinels of Integrity API starting up...
+2026-03-18 18:28:49 | INFO | sentinels.api |    Environment: development
+2026-03-18 18:28:49 | INFO | sentinels.api |    API Version: v1
+2026-03-18 18:28:49 | INFO | sentinels.api |    Debug Mode: True
+2026-03-18 18:28:49 | INFO | sentinels.api | \u2705 All services initialized successfully
+INFO:     Application startup complete.
+INFO:     127.0.0.1:50537 - "GET /api/v1/health HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app\services\ai_origin_service.py'. Reloading...
+INFO:     127.0.0.1:50540 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50543 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50550 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50560 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50561 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50578 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50581 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50586 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-03-18 18:31:12 | INFO | sentinels.api | \U0001f6d1 Sentinels of Integrity API shutting down...
+2026-03-18 18:31:12 | INFO | sentinels.api | \U0001f44b Goodbye!
+INFO:     Application shutdown complete.
+INFO:     Finished server process [9112]
+WARNING:  WatchFiles detected changes in 'app\routes\ai_origin.py', 'app\main.py'. Reloading...
+Process SpawnProcess-3:
+Traceback (most recent call last):
+  File "C:\Users\SAI\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\SAI\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\SAI\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\_subprocess.py", line 73, in subprocess_started
+    sys.stdin = os.fdopen(stdin_fileno)
+                ~~~~~~~~~^^^^^^^^^^^^^^
+  File "<frozen os>", line 1068, in fdopen
+  File "<frozen codecs>", line 312, in __init__
+KeyboardInterrupt
+C:\Users\SAI\AppData\Local\Programs\Python\Python313\Lib\site-packages\pydantic\_internal\_fields.py:132: UserWarning: Field "model_version" in MLResultResponse has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [16400]
+INFO:     Waiting for application startup.
+2026-03-18 18:31:14 | INFO | sentinels.api | \U0001f6e1\ufe0f  Sentinels of Integrity API starting up...
+2026-03-18 18:31:14 | INFO | sentinels.api |    Environment: development
+2026-03-18 18:31:14 | INFO | sentinels.api |    API Version: v1
+2026-03-18 18:31:14 | INFO | sentinels.api |    Debug Mode: True
+2026-03-18 18:31:14 | INFO | sentinels.api | \u2705 All services initialized successfully
+INFO:     Application startup complete.
+INFO:     127.0.0.1:50591 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50602 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50603 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50604 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50605 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50607 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50608 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50609 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50610 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50611 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50612 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50613 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50614 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50616 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50617 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50618 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50619 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50621 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50622 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50623 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50624 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50625 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50626 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50627 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50628 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50629 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50630 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50631 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50632 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50633 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50634 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50635 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50636 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50637 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50638 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50639 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50641 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50642 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50643 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50645 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50646 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50647 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50648 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50649 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50650 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50651 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50652 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50653 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50654 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50655 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50656 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50669 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50674 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50677 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50716 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50767 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50803 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50815 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50841 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50849 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50852 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50853 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50855 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50864 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50867 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50869 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50873 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50874 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50877 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50894 - "GET /api/v1/health HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app\services\detection_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-03-18 19:30:32 | INFO | sentinels.api | \U0001f6d1 Sentinels of Integrity API shutting down...
+2026-03-18 19:30:32 | INFO | sentinels.api | \U0001f44b Goodbye!
+INFO:     Application shutdown complete.
+INFO:     Finished server process [16400]
+C:\Users\SAI\AppData\Local\Programs\Python\Python313\Lib\site-packages\pydantic\_internal\_fields.py:132: UserWarning: Field "model_version" in MLResultResponse has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [5804]
+INFO:     Waiting for application startup.
+2026-03-18 19:30:34 | INFO | sentinels.api | \U0001f6e1\ufe0f  Sentinels of Integrity API starting up...
+2026-03-18 19:30:34 | INFO | sentinels.api |    Environment: development
+2026-03-18 19:30:34 | INFO | sentinels.api |    API Version: v1
+2026-03-18 19:30:34 | INFO | sentinels.api |    Debug Mode: True
+2026-03-18 19:30:34 | INFO | sentinels.api | \u2705 All services initialized successfully
+INFO:     Application startup complete.
+INFO:     127.0.0.1:50899 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50909 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50915 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50917 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50923 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50925 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50928 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50930 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50931 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50932 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50934 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50936 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50939 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50940 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50941 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50942 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50943 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50944 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50957 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50963 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50965 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50966 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50967 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50970 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50971 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50972 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50973 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50974 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50975 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50976 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50978 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50979 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50980 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50981 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50982 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50983 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50985 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50986 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50991 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50992 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50993 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51006 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51007 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51008 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51013 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51017 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51020 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51021 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51023 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51025 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51026 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51027 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51028 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51033 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51035 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51036 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51044 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51056 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51057 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51060 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51061 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51062 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51063 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51064 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51065 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51067 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51068 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51070 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51074 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51075 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51079 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51082 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51087 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51090 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51093 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51094 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51100 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51101 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51102 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51103 - "GET /api/v1/health HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app\models\schemas.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-03-18 19:51:52 | INFO | sentinels.api | \U0001f6d1 Sentinels of Integrity API shutting down...
+2026-03-18 19:51:52 | INFO | sentinels.api | \U0001f44b Goodbye!
+INFO:     Application shutdown complete.
+INFO:     Finished server process [5804]
+C:\Users\SAI\AppData\Local\Programs\Python\Python313\Lib\site-packages\pydantic\_internal\_fields.py:132: UserWarning: Field "model_version" in MLResultResponse has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [13392]
+INFO:     Waiting for application startup.
+2026-03-18 19:51:54 | INFO | sentinels.api | \U0001f6e1\ufe0f  Sentinels of Integrity API starting up...
+2026-03-18 19:51:54 | INFO | sentinels.api |    Environment: development
+2026-03-18 19:51:54 | INFO | sentinels.api |    API Version: v1
+2026-03-18 19:51:54 | INFO | sentinels.api |    Debug Mode: True
+2026-03-18 19:51:54 | INFO | sentinels.api | \u2705 All services initialized successfully
+INFO:     Application startup complete.
+INFO:     127.0.0.1:51115 - "GET /api/v1/health HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app\services\detection_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-03-18 19:52:07 | INFO | sentinels.api | \U0001f6d1 Sentinels of Integrity API shutting down...
+2026-03-18 19:52:07 | INFO | sentinels.api | \U0001f44b Goodbye!
+INFO:     Application shutdown complete.
+INFO:     Finished server process [13392]
+C:\Users\SAI\AppData\Local\Programs\Python\Python313\Lib\site-packages\pydantic\_internal\_fields.py:132: UserWarning: Field "model_version" in MLResultResponse has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [8168]
+INFO:     Waiting for application startup.
+2026-03-18 19:52:08 | INFO | sentinels.api | \U0001f6e1\ufe0f  Sentinels of Integrity API starting up...
+2026-03-18 19:52:08 | INFO | sentinels.api |    Environment: development
+2026-03-18 19:52:08 | INFO | sentinels.api |    API Version: v1
+2026-03-18 19:52:08 | INFO | sentinels.api |    Debug Mode: True
+2026-03-18 19:52:08 | INFO | sentinels.api | \u2705 All services initialized successfully
+INFO:     Application startup complete.
+INFO:     127.0.0.1:51134 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51138 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51141 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51142 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51143 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51144 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51145 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51146 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51149 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51151 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51153 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51154 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51155 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51162 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51165 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51167 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51182 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51187 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51188 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51192 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51193 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51194 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51195 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51196 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51197 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51198 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51199 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51200 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51201 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51202 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51203 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51204 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51211 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51214 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51215 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51216 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51218 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51219 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51220 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51221 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51222 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51235 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51238 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51241 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51243 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51244 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51245 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51252 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51253 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51255 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51256 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51267 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51269 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51275 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51293 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51295 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51301 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51302 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51304 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51304 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51304 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51304 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51307 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51307 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51307 - "GET /api/v1/health HTTP/1.1" 200 OK
+2026-03-18 20:08:02 | INFO | sentinels.api.ai_origin | AI origin check request | filename=AI5.jpeg
+2026-03-18 20:08:02 | INFO | sentinels.services.ai_origin | Starting AI origin detection | file=AI5.jpeg | size=98245B
+2026-03-18 20:08:02 | INFO | sentinels.services.ai_origin | AI Origin Result | source=midjourney | confidence=15.00% | ai=True
+2026-03-18 20:08:02 | INFO | sentinels.api.ai_origin | AI origin complete | file=AI5.jpeg | source=midjourney | confidence=15.00% | ai=True
+INFO:     127.0.0.1:51307 - "POST /api/v1/ai-origin HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51308 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51308 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51308 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51308 - "OPTIONS /api/v1/detect HTTP/1.1" 200 OK
+2026-03-18 20:08:19 | INFO | sentinels.api.detection | Detection request received | report_id=4482d06f-5b42-4ee6-a67e-6fe16fb47a9b | platform=Platform.DEVICE | media_hash=203e385a00000000...
+2026-03-18 20:08:19 | INFO | sentinels.services.detection | Initiating deep analysis for: device://AI5.jpeg?size=98245
+2026-03-18 20:08:19 | INFO | sentinels.services.blockchain | Blockchain verification | hash=203e385a00000000...
+2026-03-18 20:08:20 | ERROR | sentinels.services.detection | ML inference failed: cannot access local variable 'conf_factor' where it is not associated with a value
+2026-03-18 20:08:20 | ERROR | sentinels.services.detection | Blockchain lookup failed: 4 validation errors for EditRecord
+editor
+  Field required [type=missing, input_value={'action': 'Registered', ...'actor': '0xCreator...'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.9/v/missing
+edit_hash
+  Field required [type=missing, input_value={'action': 'Registered', ...'actor': '0xCreator...'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.9/v/missing
+timestamp
+  Input should be a valid string [type=string_type, input_value=1773758299.999647, input_type=float]
+    For further information visit https://errors.pydantic.dev/2.9/v/string_type
+description
+  Field required [type=missing, input_value={'action': 'Registered', ...'actor': '0xCreator...'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.9/v/missing
+2026-03-18 20:08:20 | INFO | sentinels.services.detection | Analysis completed in 3.9ms
+2026-03-18 20:08:20 | INFO | sentinels.services.score_aggregator | Score: 74.0 | Verdict: authentic
+2026-03-18 20:08:20 | INFO | sentinels.api.detection | Detection completed | report_id=4482d06f-5b42-4ee6-a67e-6fe16fb47a9b | score=74.0 | verdict=authentic
+INFO:     127.0.0.1:51308 - "POST /api/v1/detect HTTP/1.1" 200 OK
+2026-03-18 20:08:20 | INFO | sentinels.services.detection | Stored report | id=4482d06f-5b42-4ee6-a67e-6fe16fb47a9b
+INFO:     127.0.0.1:51309 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51309 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51309 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51310 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51310 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51310 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51315 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51315 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51315 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51316 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51316 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51316 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51318 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51318 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51318 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51319 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51319 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51319 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51321 - "OPTIONS /api/v1/detect HTTP/1.1" 200 OK
+2026-03-18 20:09:59 | INFO | sentinels.api.detection | Detection request received | report_id=ba9977aa-c06a-453d-b71e-d706a7518889 | platform=Platform.DEVICE | media_hash=42b302bc00000000...
+2026-03-18 20:09:59 | INFO | sentinels.services.detection | Initiating deep analysis for: device://waste.jpeg?size=92734
+2026-03-18 20:09:59 | INFO | sentinels.services.blockchain | Blockchain verification | hash=42b302bc00000000...
+2026-03-18 20:09:59 | ERROR | sentinels.services.detection | ML inference failed: cannot access local variable 'conf_factor' where it is not associated with a value
+2026-03-18 20:09:59 | ERROR | sentinels.services.detection | Blockchain lookup failed: 4 validation errors for EditRecord
+editor
+  Field required [type=missing, input_value={'action': 'Registered', ...'actor': '0xCreator...'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.9/v/missing
+edit_hash
+  Field required [type=missing, input_value={'action': 'Registered', ...'actor': '0xCreator...'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.9/v/missing
+timestamp
+  Input should be a valid string [type=string_type, input_value=1773758399.7692313, input_type=float]
+    For further information visit https://errors.pydantic.dev/2.9/v/string_type
+description
+  Field required [type=missing, input_value={'action': 'Registered', ...'actor': '0xCreator...'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.9/v/missing
+2026-03-18 20:09:59 | INFO | sentinels.services.detection | Analysis completed in 8.8ms
+2026-03-18 20:09:59 | INFO | sentinels.services.score_aggregator | Score: 74.0 | Verdict: authentic
+2026-03-18 20:09:59 | INFO | sentinels.api.detection | Detection completed | report_id=ba9977aa-c06a-453d-b71e-d706a7518889 | score=74.0 | verdict=authentic
+INFO:     127.0.0.1:51321 - "POST /api/v1/detect HTTP/1.1" 200 OK
+2026-03-18 20:09:59 | INFO | sentinels.services.detection | Stored report | id=ba9977aa-c06a-453d-b71e-d706a7518889
+INFO:     127.0.0.1:51321 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51321 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51321 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51322 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51322 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51322 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51323 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51323 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51323 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51328 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51328 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51328 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51329 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51329 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51329 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51333 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51333 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51333 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51341 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51341 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51341 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51342 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51342 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51342 - "GET /api/v1/health HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app\services\detection_service.py'. Reloading...
+INFO:     127.0.0.1:51355 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51355 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51355 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51361 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51361 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51361 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-03-18 20:12:33 | INFO | sentinels.api | \U0001f6d1 Sentinels of Integrity API shutting down...
+2026-03-18 20:12:33 | INFO | sentinels.api | \U0001f44b Goodbye!
+INFO:     Application shutdown complete.
+INFO:     Finished server process [8168]
+C:\Users\SAI\AppData\Local\Programs\Python\Python313\Lib\site-packages\pydantic\_internal\_fields.py:132: UserWarning: Field "model_version" in MLResultResponse has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [4232]
+INFO:     Waiting for application startup.
+2026-03-18 20:12:34 | INFO | sentinels.api | \U0001f6e1\ufe0f  Sentinels of Integrity API starting up...
+2026-03-18 20:12:34 | INFO | sentinels.api |    Environment: development
+2026-03-18 20:12:34 | INFO | sentinels.api |    API Version: v1
+2026-03-18 20:12:34 | INFO | sentinels.api |    Debug Mode: True
+2026-03-18 20:12:34 | INFO | sentinels.api | \u2705 All services initialized successfully
+INFO:     Application startup complete.
+INFO:     127.0.0.1:51367 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51367 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51367 - "GET /api/v1/health HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app\services\ai_origin_service.py'. Reloading...
+INFO:     127.0.0.1:51370 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51370 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51370 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51371 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51371 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51371 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-03-18 20:13:21 | INFO | sentinels.api | \U0001f6d1 Sentinels of Integrity API shutting down...
+2026-03-18 20:13:21 | INFO | sentinels.api | \U0001f44b Goodbye!
+INFO:     Application shutdown complete.
+INFO:     Finished server process [4232]
+C:\Users\SAI\AppData\Local\Programs\Python\Python313\Lib\site-packages\pydantic\_internal\_fields.py:132: UserWarning: Field "model_version" in MLResultResponse has conflict with protected namespace "model_".
+
+You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+  warnings.warn(
+INFO:     Started server process [16856]
+INFO:     Waiting for application startup.
+2026-03-18 20:13:22 | INFO | sentinels.api | \U0001f6e1\ufe0f  Sentinels of Integrity API starting up...
+2026-03-18 20:13:22 | INFO | sentinels.api |    Environment: development
+2026-03-18 20:13:22 | INFO | sentinels.api |    API Version: v1
+2026-03-18 20:13:22 | INFO | sentinels.api |    Debug Mode: True
+2026-03-18 20:13:22 | INFO | sentinels.api | \u2705 All services initialized successfully
+INFO:     Application startup complete.
+INFO:     127.0.0.1:51374 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51374 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51374 - "GET /api/v1/health HTTP/1.1" 200 OK

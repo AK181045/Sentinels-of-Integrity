@@ -563,6 +563,33 @@
             object-fit: cover;
         }
 
+        /* Preview Overlay Badge */
+        #media-overlay-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            padding: 8px 16px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: fadeInDown 0.4s ease-out;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+        .overlay-icon { font-size: 20px; }
+        .overlay-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
         .media-placeholder {
             font-family: 'Space Grotesk', sans-serif;
             color: var(--text-muted);
@@ -572,6 +599,250 @@
             flex-direction: column;
             align-items: center;
             gap: 10px;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           AI ORIGIN DETECTION PANEL
+        ═══════════════════════════════════════════════════════ */
+        #ai-origin-panel {
+            margin-top: 20px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(8, 10, 20, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            animation: slideInPanel 0.5s cubic-bezier(0.16,1,0.3,1);
+        }
+
+        @keyframes slideInPanel {
+            from { opacity:0; transform: translateY(16px); }
+            to   { opacity:1; transform: translateY(0); }
+        }
+
+        .aio-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            background: rgba(0,0,0,0.25);
+        }
+        .aio-header-icon {
+            font-size: 22px;
+            line-height: 1;
+        }
+        .aio-header-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+        .aio-header-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        /* Scanning state */
+        .aio-scanning {
+            padding: 20px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .aio-scan-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        @keyframes scanSlide {
+            0%   { transform: translateX(-100%); }
+            100% { transform: translateX(350%); }
+        }
+        .aio-scan-bar::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            animation: scanSlide 1.2s ease-in-out infinite;
+        }
+        .aio-scan-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        /* Result body */
+        .aio-body {
+            padding: 16px 18px 18px;
+        }
+
+        /* Tool badge row */
+        .aio-tool-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .aio-tool-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+            background: rgba(0,242,255,0.08);
+            border: 1px solid rgba(0,242,255,0.2);
+        }
+        .aio-tool-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+        }
+        .aio-tool-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .aio-verdict-badge {
+            margin-left: auto;
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            white-space: nowrap;
+        }
+        .aio-badge-ai {
+            background: rgba(255,51,68,0.12);
+            color: #ff3344;
+            border: 1px solid rgba(255,51,68,0.35);
+            box-shadow: 0 0 12px rgba(255,51,68,0.15);
+        }
+        .aio-badge-human {
+            background: rgba(0,255,136,0.1);
+            color: #00ff88;
+            border: 1px solid rgba(0,255,136,0.3);
+            box-shadow: 0 0 12px rgba(0,255,136,0.1);
+        }
+
+        /* Confidence bar */
+        .aio-conf-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .aio-conf-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            width: 72px;
+            flex-shrink: 0;
+        }
+        .aio-conf-track {
+            flex: 1;
+            height: 6px;
+            background: rgba(255,255,255,0.07);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .aio-conf-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 1s cubic-bezier(0.16,1,0.3,1);
+            width: 0%;
+        }
+        .aio-conf-fill.ai-fill {
+            background: linear-gradient(90deg, #ff3344, #ff8c00);
+            box-shadow: 0 0 8px rgba(255,51,68,0.5);
+        }
+        .aio-conf-fill.human-fill {
+            background: linear-gradient(90deg, #00ff88, #00aaff);
+            box-shadow: 0 0 8px rgba(0,255,136,0.4);
+        }
+        .aio-conf-pct {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            width: 38px;
+            text-align: right;
+        }
+
+        /* Signals chips */
+        .aio-signals {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 10px;
+        }
+        .aio-chip {
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            background: rgba(0,242,255,0.07);
+            border: 1px solid rgba(0,242,255,0.15);
+            color: var(--text-muted);
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .aio-chip.flag {
+            background: rgba(255,187,0,0.08);
+            border-color: rgba(255,187,0,0.25);
+            color: #ffbb00;
+        }
+
+        /* Summary line */
+        .aio-summary {
+            margin-top: 12px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 12px;
+            line-height: 1.6;
+            background: rgba(0,0,0,0.25);
+            border-left: 3px solid var(--accent);
+            color: var(--text-muted);
+        }
+        .aio-summary.ai-summary {
+            border-left-color: #ff3344;
+        }
+        .aio-summary.human-summary {
+            border-left-color: #00ff88;
+        }
+
+        /* Secondary sources */
+        .aio-secondary {
+            margin-top: 10px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .aio-secondary strong { color: rgba(255,255,255,0.5); }
+
+        /* Error state */
+        .aio-error {
+            padding: 14px 18px;
+            font-size: 12px;
+            color: #ff8c00;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
     </style>
 </head>
@@ -607,14 +878,53 @@
 
                 <div class="input-group hidden" id="file-container">
                     <label>Local Media File</label>
-                    <div class="file-upload-wrapper">
+                    <div class="file-upload-wrapper" id="file-drop-zone">
                         <input type="file" id="file-input" accept="video/*,image/*">
-                        <div class="file-upload-content">
+                        <div class="file-upload-content" id="file-upload-content">
                             <i>📁</i>
-                            <span style="font-size: 14px; font-weight: 500; color: var(--text-main);">Drag & Drop or
+                            <span style="font-size: 14px; font-weight: 500; color: var(--text-main);">Drag &amp; Drop or
                                 Click to Browse</span>
                             <div style="font-size: 11px; margin-top: 5px; color: var(--text-muted);">Supports MP4, JPG,
-                                PNG</div>
+                                PNG, WebM, MOV</div>
+                        </div>
+                    </div>
+                    <!-- AI Origin Detection Panel (shown instantly after upload) -->
+                    <div id="ai-origin-panel" style="display:none;">
+                        <div class="aio-header">
+                            <span class="aio-header-icon">🔬</span>
+                            <span class="aio-header-title">AI Origin Scan</span>
+                            <span class="aio-header-sub" id="aio-filename">—</span>
+                        </div>
+                        <!-- Scanning animation -->
+                        <div class="aio-scanning" id="aio-scanning">
+                            <span class="aio-scan-label">Scanning metadata &amp; pixels…</span>
+                            <div class="aio-scan-bar"></div>
+                        </div>
+                        <!-- Results (hidden until done) -->
+                        <div class="aio-body" id="aio-result-body" style="display:none;">
+                            <div class="aio-tool-row">
+                                <div class="aio-tool-icon" id="aio-tool-icon">🤖</div>
+                                <div>
+                                    <div class="aio-tool-name" id="aio-tool-name">—</div>
+                                    <div class="aio-tool-sub" id="aio-tool-sub">Detection complete</div>
+                                </div>
+                                <span class="aio-verdict-badge" id="aio-verdict-badge">—</span>
+                            </div>
+                            <div class="aio-conf-row">
+                                <span class="aio-conf-label">Confidence</span>
+                                <div class="aio-conf-track">
+                                    <div class="aio-conf-fill" id="aio-conf-fill"></div>
+                                </div>
+                                <span class="aio-conf-pct" id="aio-conf-pct">—</span>
+                            </div>
+                            <div class="aio-signals" id="aio-signals"></div>
+                            <div class="aio-secondary" id="aio-secondary" style="display:none;"></div>
+                            <div class="aio-summary" id="aio-summary"></div>
+                        </div>
+                        <!-- Error state -->
+                        <div class="aio-error" id="aio-error" style="display:none;">
+                            <span>⚠️</span>
+                            <span id="aio-error-msg">Origin scan unavailable — API offline or file too large.</span>
                         </div>
                     </div>
                 </div>
@@ -664,6 +974,11 @@
                     </div>
 
                     <div class="media-preview-container" id="media-preview">
+                        <!-- Floating On-Screen Badge -->
+                        <div id="media-overlay-badge" style="display:none;">
+                            <span class="overlay-icon" id="ov-icon">🤖</span>
+                            <span class="overlay-text" id="ov-text">AI DETECTED</span>
+                        </div>
                         <div class="media-placeholder">
                             <span style="font-size: 24px;">👁️</span>
                             <span>MEDIA PREVIEW</span>
@@ -704,6 +1019,22 @@
                             <div class="stat-value" id="bc-status" style="font-size: 18px;">ABSENT</div>
                             <div style="font-size: 11px; margin-top: 8px; color: var(--accent); opacity: 0.7;">NO
                                 ZK-PROOF DETECTED</div>
+                        </div>
+                    </div>
+
+                    <!-- New Source Attribution Section -->
+                    <div id="attribution-card" style="margin-top:20px; display:none;">
+                        <h3 style="margin-bottom: 15px; font-weight: 700; font-family: 'Space Grotesk', sans-serif; font-size: 14px; letter-spacing: 2px; color: var(--text-muted);">SOURCE ATTRIBUTION</h3>
+                        <div style="display:flex; align-items:center; gap:20px; padding:20px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:16px;">
+                            <div id="attr-icon-large" style="width:60px; height:60px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:32px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.1);">🤖</div>
+                            <div>
+                                <div id="attr-name" style="font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:700; color:#fff;">DALL-E / OpenAI</div>
+                                <div id="attr-desc" style="font-size:12px; color:var(--text-muted); margin-top:4px;">Generative model identified via pixel-frequency analysis</div>
+                            </div>
+                            <div style="margin-left:auto; text-align:right;">
+                                <div id="attr-conf" style="font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700; color:#ff3344;">98%</div>
+                                <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Certainty</div>
+                            </div>
                         </div>
                     </div>
 
@@ -832,6 +1163,198 @@
             }
         }
 
+        // ═══════════════════════════════════════════════════════════════════
+        // AI TOOL → Display Metadata
+        // ═══════════════════════════════════════════════════════════════════
+        const AI_TOOL_META = {
+            chatgpt_dalle:       { icon: '🤖', name: 'ChatGPT',           color: '#10a37f' },
+            gemini_imagen:       { icon: '✨', name: 'Gemini',             color: '#4285f4' },
+            midjourney:          { icon: '🎨', name: 'Midjourney',         color: '#ff6b6b' },
+            stable_diffusion:    { icon: '⚗️', name: 'Stable Diffusion',   color: '#a78bfa' },
+            runway_ml:           { icon: '🎬', name: 'Runway',             color: '#00d2ff' },
+            sora:                { icon: '🌀', name: 'Sora',               color: '#10a37f' },
+            adobe_firefly:       { icon: '🔥', name: 'Adobe Firefly',      color: '#ff6347' },
+            canva_ai:            { icon: '🖼️', name: 'Canva',              color: '#00c4cc' },
+            bing_image_creator:  { icon: '🪟', name: 'Bing Image Creator', color: '#0078d4' },
+            leonardo_ai:         { icon: '🦁', name: 'Leonardo',           color: '#f59e0b' },
+            pika_labs:           { icon: '⚡', name: 'Pika',               color: '#818cf8' },
+            heygen:              { icon: '👤', name: 'HeyGen',             color: '#6366f1' },
+            synthesia:           { icon: '🎭', name: 'Synthesia',          color: '#ec4899' },
+            unknown_ai:          { icon: '❓', name: 'Unknown AI',         color: '#f97316' },
+            human_created:       { icon: '📸', name: 'Human-Created',      color: '#00ff88' },
+        };
+
+        // AI ORIGIN SCAN — triggered immediately on file select
+        let lastOriginData = null; // Store for use in final updateUI
+
+        document.getElementById('file-input').addEventListener('change', async function(e) {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+
+            lastOriginData = null; // reset
+            const overlay = document.getElementById('media-overlay-badge');
+            overlay.style.display = 'none';
+
+            const panel    = document.getElementById('ai-origin-panel');
+            const scanning = document.getElementById('aio-scanning');
+            const body     = document.getElementById('aio-result-body');
+            const errDiv   = document.getElementById('aio-error');
+
+            // Update filename display
+            document.getElementById('aio-filename').textContent = file.name.length > 28
+                ? file.name.substring(0, 26) + '…'
+                : file.name;
+
+            // Show panel with scanning indicator
+            panel.style.display    = 'block';
+            scanning.style.display = 'flex';
+            body.style.display     = 'none';
+            errDiv.style.display   = 'none';
+
+            // Update file upload content to show selected file
+            const uploadContent = document.getElementById('file-upload-content');
+            if (uploadContent) {
+                uploadContent.innerHTML = `
+                    <i>✅</i>
+                    <span style="font-size:13px;font-weight:600;color:var(--text-main)">${file.name}</span>
+                    <div style="font-size:11px;margin-top:4px;color:var(--text-muted)">
+                        ${(file.size / 1024).toFixed(1)} KB · ${file.type || 'unknown type'}
+                    </div>`;
+            }
+
+            // Detect media type from MIME
+            const mediaType = file.type.startsWith('video/') ? 'video' : 'image';
+
+            try {
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('media_type', mediaType);
+
+                const ctrl = new AbortController();
+                const tid  = setTimeout(() => ctrl.abort(), 20000);
+
+                const resp = await fetch(`${API_BASE}/api/v1/ai-origin`, {
+                    method: 'POST',
+                    body: formData,
+                    signal: ctrl.signal,
+                });
+                clearTimeout(tid);
+
+                if (!resp.ok) {
+                    const err = await resp.json().catch(() => ({ detail: 'Unknown error' }));
+                    throw new Error(err.detail || `HTTP ${resp.status}`);
+                }
+
+                const data = await resp.json();
+                lastOriginData = data; // store for final report
+                renderAIOriginResult(data);
+                
+                // Also show floating badge if AI is detected
+                if(data.is_ai_generated) {
+                    const meta = AI_TOOL_META[data.detected_source] || AI_TOOL_META['unknown_ai'];
+                    document.getElementById('ov-icon').textContent = meta.icon;
+                    document.getElementById('ov-text').textContent = meta.name.toUpperCase() + ' IDENTIFIED';
+                    document.getElementById('ov-text').style.color = meta.color;
+                    overlay.style.display = 'flex';
+                }
+
+            } catch (err) {
+                scanning.style.display = 'none';
+                errDiv.style.display   = 'flex';
+                const msg = err.name === 'AbortError'
+                    ? 'Origin scan timed out. Check if API is running.'
+                    : `Origin scan failed: ${err.message}`;
+                document.getElementById('aio-error-msg').textContent = msg;
+                console.warn('[AI Origin]', err);
+            }
+        });
+
+        function renderAIOriginResult(data) {
+            const scanning = document.getElementById('aio-scanning');
+            const body     = document.getElementById('aio-result-body');
+            const errDiv   = document.getElementById('aio-error');
+
+            scanning.style.display = 'none';
+            errDiv.style.display   = 'none';
+            body.style.display     = 'block';
+
+            const source    = data.detected_source || 'unknown_ai';
+            const isAI      = data.is_ai_generated;
+            const conf      = data.confidence || 0;
+            const meta      = AI_TOOL_META[source] || AI_TOOL_META['unknown_ai'];
+
+            // Tool icon & name
+            document.getElementById('aio-tool-icon').textContent = meta.icon;
+            document.getElementById('aio-tool-icon').style.borderColor = meta.color + '55';
+            document.getElementById('aio-tool-icon').style.background  = meta.color + '18';
+            document.getElementById('aio-tool-name').textContent = meta.name;
+            document.getElementById('aio-tool-name').style.color = meta.color;
+            document.getElementById('aio-tool-sub').textContent = isAI
+                ? `Detected AI-generated content · ${(conf * 100).toFixed(0)}% confidence`
+                : 'No AI generation signatures detected';
+
+            // Verdict badge
+            const badge = document.getElementById('aio-verdict-badge');
+            if (isAI) {
+                badge.textContent = '⚠ AI GENERATED';
+                badge.className   = 'aio-verdict-badge aio-badge-ai';
+            } else {
+                badge.textContent = '✓ AUTHENTIC';
+                badge.className   = 'aio-verdict-badge aio-badge-human';
+            }
+
+            // Confidence bar
+            const fill = document.getElementById('aio-conf-fill');
+            fill.className = 'aio-conf-fill ' + (isAI ? 'ai-fill' : 'human-fill');
+            setTimeout(() => { fill.style.width = (conf * 100).toFixed(1) + '%'; }, 80);
+            document.getElementById('aio-conf-pct').textContent = (conf * 100).toFixed(0) + '%';
+            document.getElementById('aio-conf-pct').style.color = isAI ? '#ff3344' : '#00ff88';
+
+            // Signals chips
+            const signalsDiv = document.getElementById('aio-signals');
+            signalsDiv.innerHTML = '';
+            const signals = (data.detection_signals || []).slice(0, 6);
+            const flags   = (data.metadata_flags   || []).slice(0, 3);
+            signals.forEach(s => {
+                const chip = document.createElement('span');
+                chip.className   = 'aio-chip';
+                chip.textContent = s.length > 45 ? s.substring(0, 43) + '…' : s;
+                chip.title       = s;
+                signalsDiv.appendChild(chip);
+            });
+            flags.forEach(f => {
+                const chip = document.createElement('span');
+                chip.className   = 'aio-chip flag';
+                chip.textContent = f.length > 45 ? f.substring(0, 43) + '…' : f;
+                chip.title       = f;
+                signalsDiv.appendChild(chip);
+            });
+            if (signals.length === 0 && flags.length === 0) {
+                const chip = document.createElement('span');
+                chip.className   = 'aio-chip';
+                chip.textContent = 'No explicit metadata signals';
+                signalsDiv.appendChild(chip);
+            }
+
+            // Secondary sources
+            const secDiv = document.getElementById('aio-secondary');
+            if (data.secondary_sources && data.secondary_sources.length > 0) {
+                const names = data.secondary_sources.map(s => {
+                    const m = AI_TOOL_META[s] || { name: s };
+                    return m.name;
+                }).join(', ');
+                secDiv.style.display = 'block';
+                secDiv.innerHTML = `<strong>Also possible:</strong> ${names}`;
+            } else {
+                secDiv.style.display = 'none';
+            }
+
+            // Summary
+            const sumDiv = document.getElementById('aio-summary');
+            sumDiv.textContent = data.summary || 'Analysis complete.';
+            sumDiv.className   = 'aio-summary ' + (isAI ? 'ai-summary' : 'human-summary');
+        }
+
         async function startAnalysis() {
             const urlInput = document.getElementById('url-input');
             const fileInput = document.getElementById('file-input');
@@ -848,6 +1371,7 @@
                     return;
                 }
                 finalUrl = urlInput.value;
+                lastOriginData = null; // Clear previous file scan data
             } else {
                 if (!fileInput.files || !fileInput.files.length) {
                     alert("Please select a file to upload from your device.");
@@ -957,6 +1481,24 @@
                 document.getElementById('res-platform').textContent = (data.platform || "GENERAL").toUpperCase() + " ANALYSIS";
                 document.getElementById('res-id').textContent = "ID: " + (data.report_id || "PROV-XXXX");
 
+                const sourceData = lastOriginData || (data.ml_result ? {
+                    is_ai_generated: data.ml_result.is_synthetic,
+                    detected_source: data.ml_result.ai_source,
+                    confidence: data.ml_result.confidence,
+                    summary: "AI signature detected via URL/metadata heuristics."
+                } : null);
+
+                // Ensure the verdict strictly correlates to AI detection overrides
+                if (sourceData && sourceData.is_ai_generated) {
+                    title = 'AI GENERATED';
+                    vClass = 'verdict-synthetic';
+                    themeColor = '#ff3344';
+                    verdictLabel.textContent = title;
+                    verdictLabel.className = 'verdict-tag ' + vClass;
+                    data.sentinels_score = Math.min(Math.round(data.sentinels_score || 0), 35);
+                    verdict = 'synthetic';
+                }
+
                 const score = Math.round(data.sentinels_score || 0);
                 scoreVal.textContent = score;
                 scoreContainer.style.borderColor = themeColor;
@@ -989,6 +1531,33 @@
                     summaryBox.innerHTML = `<strong>Verdict Summary:</strong> SUSPICIOUS. Detected severe anomalies in spectral frequency and ghosting artifacts highly consistent with complete AI generation.`;
                     summaryBox.style.borderColor = 'rgba(255, 51, 68, 0.2)';
                     summaryBox.style.background = 'rgba(255, 51, 68, 0.05)';
+                }
+
+                // [UPDATE] Also update the Source Attribution Card in the final report
+                const attrCard = document.getElementById('attribution-card');
+
+
+                if (sourceData && sourceData.is_ai_generated && sourceData.detected_source) {
+                    const oData = sourceData;
+                    const meta = AI_TOOL_META[oData.detected_source] || AI_TOOL_META['unknown_ai'];
+                    attrCard.style.display = 'block';
+                    document.getElementById('attr-icon-large').textContent = meta.icon;
+                    document.getElementById('attr-icon-large').style.borderColor = meta.color + '66';
+                    document.getElementById('attr-name').textContent = meta.name;
+                    document.getElementById('attr-name').style.color = meta.color;
+                    document.getElementById('attr-conf').textContent = (oData.confidence * 100).toFixed(0) + '%';
+                    document.getElementById('attr-conf').style.color = meta.color;
+                    document.getElementById('attr-desc').textContent = oData.summary.split('.')[0] + '.';
+                    
+                    // Display on-screen badge for URL scan too
+                    const overlay = document.getElementById('media-overlay-badge');
+                    document.getElementById('ov-icon').textContent = meta.icon;
+                    document.getElementById('ov-text').textContent = meta.name.toUpperCase() + ' IDENTIFIED';
+                    document.getElementById('ov-text').style.color = meta.color;
+                    overlay.style.display = 'flex';
+                } else {
+                    attrCard.style.display = 'none';
+                    document.getElementById('media-overlay-badge').style.display = 'none';
                 }
 
             } catch (e) {

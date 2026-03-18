@@ -23,6 +23,7 @@ from app.models.schemas import (
     SpatialAnalysis,
     TemporalAnalysis,
     FrequencyAnalysis,
+    AIOriginSource,
 )
 from app.services.blockchain_service import BlockchainService
 
@@ -138,30 +139,82 @@ class DetectionService:
             except Exception as e:
                 logger.warning(f"Metadata scrape failed for {media_url}: {e}")
 
-        # Expanded library of AI signatures
+        # Expanded library of AI signatures — matches all tools in ai_origin_service
         advanced_ai_signatures = [
-            "vv9rt9azfjs", "deepfake", "synthetic", "ai_generated", "ai generated", 
-            "midjourney", "sora", "runwayml", "heygen", "synthesia", "leonardo",
-            "pika", "kaiber", "ai-generated", "elevenlabs"
+            # Generic
+            "deepfake", "synthetic", "ai_generated", "ai generated", "ai-generated",
+            # OpenAI
+            "dall-e", "dalle", "openai", "chatgpt", "sora",
+            # Google
+            "gemini", "imagen", "bard", "google generative",
+            # Midjourney
+            "midjourney", "nijijourney",
+            # Stable Diffusion / ComfyUI
+            "stable diffusion", "stablediffusion", "stabilityai", "dreamstudio",
+            "automatic1111", "comfyui", "dreamshaper",
+            # Runway
+            "runwayml", "runway ml", "gen-2", "gen-3",
+            # Video AI
+            "heygen", "synthesia", "pika", "kaiber",
+            # Other image AI
+            "leonardo", "adobe firefly", "firefly", "canva ai", "bing image creator",
+            "copilot", "elevenlabs",
+            # Demo flag
+            "vv9rt9azfjs",
         ]
         
-        # Check both the raw URL and the LIVE webpage title
-        if any(sig in lower_url for sig in advanced_ai_signatures) or any(sig in live_title for sig in advanced_ai_signatures):
+        # ─── TURBO ATTRIBUTION MAPPING ───────────────────────────
+        # Scans both the URL and the LIVE webpage title
+        ai_signatures_map = {
+            "dall-e": AIOriginSource.CHATGPT_DALLE,
+            "openai": AIOriginSource.CHATGPT_DALLE,
+            "chatgpt": AIOriginSource.CHATGPT_DALLE,
+            "gemini": AIOriginSource.GEMINI_IMAGEN,
+            "imagen": AIOriginSource.GEMINI_IMAGEN,
+            "midjourney": AIOriginSource.MIDJOURNEY,
+            "stable diffusion": AIOriginSource.STABLE_DIFFUSION,
+            "runway": AIOriginSource.RUNWAY_ML,
+            "sora": AIOriginSource.SORA,
+            "adobe firefly": AIOriginSource.ADOBE_FIREFLY,
+            "firefly": AIOriginSource.ADOBE_FIREFLY,
+            "bing image": AIOriginSource.BING_IMAGE_CREATOR,
+            "pika": AIOriginSource.PIKA_LABS,
+            "heygen": AIOriginSource.HEYGEN,
+        }
+
+        detected_source = None
+        conf_factor = 0.5  # Default confidence factor
+
+        import re
+        ai_tools_pattern = "|".join(ai_signatures_map.keys())
+        generic_ai_pattern = r'\b(ai|deepfake|synthetic|fake|generated)\b'
+        
+        match_tool = re.search(f"({ai_tools_pattern})", lower_url + " " + live_title)
+        match_generic = re.search(generic_ai_pattern, lower_url + " " + live_title)
+
+        if match_tool:
             is_synthetic = True
             is_partial = False
-            seed_val = 999  # Force aggressive variation metrics
+            seed_val = 999
             conf_factor = 0.95
-            logger.warning(f"CRITICAL MATCH: Video flagged as SYNTHETIC based on advanced web heuristics.")
-        else:
-            # Confidence Score (Variance based on clarity)
-            conf_factor = (seed_val % 50) / 50.0
-            
+            detected_source = ai_signatures_map[match_tool.group(1)]
+            logger.warning(f"TURBO MATCH: Tool identified as {detected_source.value}")
+        elif match_generic:
+            is_synthetic = True
+            is_partial = False
+            seed_val = 999
+            conf_factor = 0.90
+            detected_source = AIOriginSource.UNKNOWN_AI
+            logger.warning(f"TURBO MATCH: Generic AI footprint identified")
+
         if is_synthetic:
             confidence = 0.85 + (conf_factor * 0.14)
         elif is_partial:
             confidence = 0.55 + (conf_factor * 0.25)
         else:
             confidence = 0.01 + ((seed_val % 30) / 100.0)
+
+        # ─── END TURBO LOGIC ────────────────────────────────────
             
         # Spatial Analysis (Focuses on foreground vs background mismatch)
         spatial_val = int(url_seed[4:8], 16) % 100
@@ -196,6 +249,7 @@ class DetectionService:
             is_synthetic=is_synthetic,
             is_partial=is_partial,
             confidence=round(confidence, 4),
+            ai_source=detected_source,
             artifacts=artifacts,
             model_version="sentinel-core-v4.0-pixel-aware",
             spatial=SpatialAnalysis(

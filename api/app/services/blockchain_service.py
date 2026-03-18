@@ -76,7 +76,12 @@ class BlockchainService:
         author = "Sentinels Validator #7" if is_registered else None
         registration_tx = f"0x{content_hash[:32]}...{content_hash[-8:]}" if is_registered else None
         edit_history = [
-            EditRecord(action="Registered", timestamp=time.time() - 86400, actor="0xCreator..."),
+            EditRecord(
+                editor="0xCreator...",
+                edit_hash=content_hash,
+                timestamp=str(time.time() - 86400),
+                description="Registered"
+            ),
         ] if is_registered else []
         zk_verified = is_registered
 
