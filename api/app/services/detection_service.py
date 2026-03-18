@@ -180,6 +180,7 @@ class DetectionService:
             "bing image": AIOriginSource.BING_IMAGE_CREATOR,
             "pika": AIOriginSource.PIKA_LABS,
             "heygen": AIOriginSource.HEYGEN,
+            "vv9rt9azfjs": AIOriginSource.HEYGEN,
         }
 
         detected_source = None

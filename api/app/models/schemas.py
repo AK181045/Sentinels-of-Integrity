@@ -46,19 +46,6 @@ class AnalysisStatus(str, Enum):
 
 
 class AIOriginSource(str, Enum):
-    CHATGPT_DALLE = "chatgpt_dalle"
-    GEMINI_IMAGEN = "gemini_imagen"
-    MIDJOURNEY = "midjourney"
-    STABLE_DIFFUSION = "stable_diffusion"
-    RUNWAY_ML = "runway_ml"
-    SORA = "sora"
-    ADOBE_FIREFLY = "adobe_firefly"
-    CANVA_AI = "canva_ai"
-    BING_IMAGE_CREATOR = "bing_image_creator"
-    LEONARDO_AI = "leonardo_ai"
-    PIKA_LABS = "pika_labs"
-    HEYGEN = "heygen"
-    SYNTHESIA = "synthesia"
     UNKNOWN_AI = "unknown_ai"
     HUMAN_CREATED = "human_created"
 
@@ -66,28 +53,7 @@ class AIOriginSource(str, Enum):
 # =============================================================================
 # AI Origin Detection Schemas
 # =============================================================================
-class AIOriginResult(BaseModel):
-    """Result of AI-origin / generative tool detection on uploaded media."""
-    is_ai_generated: bool
-    confidence: float = Field(ge=0.0, le=1.0, description="Confidence that media is AI-generated")
-    detected_source: AIOriginSource = Field(description="Most likely AI generation source")
-    secondary_sources: List[AIOriginSource] = Field(
-        default_factory=list,
-        description="Other possible AI sources ordered by likelihood"
-    )
-    detection_signals: List[str] = Field(
-        default_factory=list,
-        description="Human-readable signals that triggered detection"
-    )
-    metadata_flags: List[str] = Field(
-        default_factory=list,
-        description="Metadata-based flags (EXIF, XMP, etc.)"
-    )
-    pixel_analysis: dict = Field(
-        default_factory=dict,
-        description="Pixel-level analysis details"
-    )
-    summary: str = Field(default="", description="Human-readable verdict summary")
+# Schemas removed.
 
 
 # =============================================================================
@@ -174,7 +140,6 @@ class MLResultResponse(BaseModel):
     is_synthetic: bool
     is_partial: bool = False
     confidence: float = Field(ge=0.0, le=1.0)
-    ai_source: Optional[AIOriginSource] = None
     artifacts: list[str] = Field(default_factory=list)
     model_version: str = "sentinel-core-v4.0-pixel-aware"
     spatial: Optional[SpatialAnalysis] = None

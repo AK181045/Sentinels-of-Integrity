@@ -21,7 +21,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.routes import detection, verification, reports, health, ai_origin
+from app.routes import detection, verification, reports, health
 from app.middleware.rate_limiter import RateLimiterMiddleware
 from app.middleware.sanitizer import InputSanitizationMiddleware
 
@@ -109,7 +109,6 @@ app.include_router(health.router, prefix="/api/v1", tags=["Health"])
 app.include_router(detection.router, prefix="/api/v1", tags=["Detection"])
 app.include_router(verification.router, prefix="/api/v1", tags=["Verification"])
 app.include_router(reports.router, prefix="/api/v1", tags=["Reports"])
-app.include_router(ai_origin.router, prefix="/api/v1", tags=["AI Origin"])
 
 
 # =============================================================================
